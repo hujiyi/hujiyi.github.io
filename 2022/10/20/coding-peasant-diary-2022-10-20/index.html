@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>coding peasant diary 2022 10 20 | Laohoo</title><meta name="robots" content="noindex"><meta name="author" content="laohoodman"><meta name="copyright" content="laohoodman"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="article">
+<meta property="og:title" content="coding peasant diary 2022 10 20">
+<meta property="og:url" content="https://hujiyi.github.io/2022/10/20/coding-peasant-diary-2022-10-20/index.html">
+<meta property="og:site_name" content="Laohoo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hujiyi.github.io/2022/09/02/coding-peasant-diary-2022-09-02/IMG20220830075543.png">
+<meta property="article:published_time" content="2022-10-20T06:45:29.000Z">
+<meta property="article:modified_time" content="2022-10-20T14:17:41.352Z">
+<meta property="article:author" content="laohoodman">
+<meta property="article:tag" content="diary">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hujiyi.github.io/2022/09/02/coding-peasant-diary-2022-09-02/IMG20220830075543.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hujiyi.github.io/2022/10/20/coding-peasant-diary-2022-10-20/index.html"><link rel="preconnect"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: '/pluginsSrc/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'coding peasant diary 2022 10 20',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://hujiyi.github.io/2022/09/02/coding-peasant-diary-2022-09-02/IMG20220830075543.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Laohoo</span></a><a class="nav-page-title" href="/"><span class="site-name">coding peasant diary 2022 10 20</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">coding peasant diary 2022 10 20</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-20T06:45:29.000Z" title="发表于 2022-10-20 14:45:29">2022-10-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-20T14:17:41.352Z" title="更新于 2022-10-20 22:17:41">2022-10-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/diary/">diary</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><img src="/2022/10/20/coding-peasant-diary-2022-10-20/naning_weather_20221020.png" class="" title="weather">
+
+<p>今天主要的时间和精力都用来写下面这个小作文了</p>
+<h1 id="对20级软件专业的同学谈谈有关实习的体会"><a href="#对20级软件专业的同学谈谈有关实习的体会" class="headerlink" title="对20级软件专业的同学谈谈有关实习的体会"></a>对20级软件专业的同学谈谈有关实习的体会</h1><p>时间过得真快, 转眼间我们 <code>20级</code> 的同学准备到出去找 <code>实习工作</code> 的时候了。</p>
+<p>结合我以前指导实习、就业, 还有现在我在<code>云宝宝</code>公司挂职了解到的一些情况, 谈一下我的一些看法：</p>
+<h2 id="我所在的部门的情况"><a href="#我所在的部门的情况" class="headerlink" title="我所在的部门的情况"></a>我所在的部门的情况</h2><p>我这个学期到<code>云宝宝</code>公司挂职, 从8月下旬开始进入公司的 <code>业务部</code>, 整个部门有30多人, 部门的<code>技术负责人</code>是我们<code>软件专业</code> 06级还是 07级的学生（当时聊完了后来忘记具体是哪一级了）。</p>
+<p>另外部门里面还有一个是 <code>11级软件3班</code>和一个 <code>17级软件1班</code>的同学。所以如果大家以后在南宁市从事软件开发方面的工作, 有很大的可能, 你都会遇上<code>软件专业</code>的学长。</p>
+<p>每天上班时间是上午九点到十二点,下午两点到六点, 当然在公司项目进度吃紧的时候, 其他人还是有时有需要加班的情况(我是编外人员,所以每天准时收工走人)。</p>
+<p>在和公司业务部联系之后, 他们就给了我一个业务部现在正在使用的<code>项目框架</code>（<code>Spring Boot 2 + Vue 2</code>）。因为我之前是基本不使用 <code>Java</code>, <code>Spring Boot</code> 也是没有用过的, 这个框架我花了差不多两个星期才用起来(因为<code>Java</code> 基础不好,所以有不少地方是知其然而不知所以然), 现在的项目都是在这个框架的基础上进行开发的。</p>
+<h2 id="我所在的项目小组的情况"><a href="#我所在的项目小组的情况" class="headerlink" title="我所在的项目小组的情况"></a>我所在的项目小组的情况</h2><p>到公司之后我被分到一个开发小组(<code>项目二组</code>), 连我一起总共5个人, 小组现在主要有两个项目: 一个是已经上线的旧系统,目前对方正在提出一些项目的优化要求,需要进行旧项目的修改和优化; 另外一个是新项目, 目前第一阶段的后端开发工作已经基本完成,主要的工作都集中在前端开发方面,据说要争取在月底前上线项目的第一阶段功能。当然, 大多数时候我都在打酱油, 只是做一些不是很难的部分。</p>
+<h2 id="项目开发的一般流程："><a href="#项目开发的一般流程：" class="headerlink" title="项目开发的一般流程："></a>项目开发的一般流程：</h2><p>部门中有专门的人(类似<code>项目经理</code>, 也许就是吧, 我没有问过她具体的岗位)负责和项目的客户联系, 各个不同的项目都是由她负责管理的, 由她联系并落实项目的各方面需求, 之后她会根据需求做出 <code>项目原型</code> (项目原型使用 <code>https://www.mockplus.cn</code>制作), <code>项目原型</code>的界面和一些主要的<code>交互</code>都会和客户确定落实。</p>
+<img src="/2022/10/20/coding-peasant-diary-2022-10-20/20221020211246.png" class="" title="yx">
+
+<img src="/2022/10/20/coding-peasant-diary-2022-10-20/20221020211252.jpg" class="" title="yx">
+
+<p>我们小组的组长根据需求先确定并建好<code>数据库</code>的表和字段,  接下来就是创建项目的后端部分, 为了提高速度和效率, 后端一般是先使用代码生成器, 再根据需要对部分生成的代码进行少量修改。虽然我没敢问, 但很大的概率是这个项目能够先跑起来就行, 至于代码质量或是更高阶的要求什么的, 看起来是没有时间处理了。接下来的工作主要就是前端部分,  前端开发就根据后端生成的 <code>Swagger</code> 接口 还有 <code>项目原型</code> 进行开发,根据客户的需要, 现在<code>前端项目</code>一般都有 <code>Vue</code> 或是<code>小程序</code>等多种类型。</p>
+<p>总的来说,整个项目的开发过程中,前端的开发工作量比后端要更大,我们小组中有一个人是专职做前端开发的,另外一个重点做运维, 其他的人除了要做一些后端的工作, 也要帮忙、协助做一些容易的前端部分的开发。</p>
+<h2 id="我理解的一般技术公司招聘实习的需求"><a href="#我理解的一般技术公司招聘实习的需求" class="headerlink" title="我理解的一般技术公司招聘实习的需求"></a>我理解的一般技术公司招聘实习的需求</h2><p>公司招人的主要目的是干活, 而不是招一个什么都不会的人来学习的,当然<code>培训机构</code>例外,<code>培训机构</code>后面另外说。因为从公司的角度,只有项目吃紧、人手不足的时候才有招人的动力, 没活干, 招几个人过来发工资还要教会各种技能这个事情是不可能的。 所以招人的总原则是能干活, 或者是能在<code>尽可能短的时间</code>内了解并掌握公司当前正在使用的开发工具, 然后上手干活。因此, 有打算要应聘或是寻找开发岗位工作的同学, 就要自己先做好相应的技术准备。</p>
+<p>学校里面教的东西不可能满足外面所有公司的技术需求, 但所有的技术其实也是有相通的地方的,所以大家能把现在的课程学好, 即使以后工作用到的技术并不一样,也可以在更短的时间内掌握上手。招人干活的公司会知道他们自己现在所使用的技术是什么情况, 实习生是马上能上手, 还是要经过一段时间的学习。但是抱着到时了公司再学习的心态去应聘, 基本上成功的概率较低; 但是自己能独立做一些东西, 也意味着你接受其他的知识会更快, 那对公司来说花费的时间以及其他成本就会更低, 也更容易从中招到自己需要的人。</p>
+<img src="/2022/10/20/coding-peasant-diary-2022-10-20/li_20221020145413.jpg" class="" title="QQ">
+
+<img src="/2022/10/20/coding-peasant-diary-2022-10-20/li_20221020145427.jpg" class="" title="QQ">
+
+<img src="/2022/10/20/coding-peasant-diary-2022-10-20/li_20221020145433.jpg" class="" title="QQ">
+
+<h2 id="找实习工作要做哪些准备"><a href="#找实习工作要做哪些准备" class="headerlink" title="找实习工作要做哪些准备"></a>找实习工作要做哪些准备</h2><p>就我目前做的部分项目来看,后端开发部分是先建数据库,然后用框架的<code>代码生成器</code>生成主要代码(这个要看每个公司的情况, 有些公司可能用的是其他开发框架, 纯手工写代码的也是有的), 最后根据业务的需要对其中部分后端代码进行修改, 修改的主要就是某些表的 <code>查改增删</code> 或是多表之间的关联等内容, 现在我做的项目数据库的表之间都不用外键, <code>复杂的多表查询</code>调用<code>SQL</code>完成, 简单一些的就在 <code>Java</code> 中的 <code>Service</code> 层完成, 更简单的就直接在前端中分别查询再组合。 前端开发的就目前很多公司主要还是使用 <code>Vue2+Element UI</code>(如果使用的是 <code>Vue</code> 的话)。</p>
+<p>就难度来说,个人觉得后端开发的部分和学校开设的课程可能更加衔接,毕竟我们在 <code>Java</code> 方面开设的课程的数量 也更多。</p>
+<p>前端部分因为课时等关系, 我之前上这个课的时候,内容并不深入(已经有同学说：谁说不难,像天书好嘛！),而在实际前端项目开发的时候,<code>状态管理</code>、<code>混入</code>等没有讲过的内容都是项目开发不能缺少的部分。至于<code>小程序</code> 的话,其实总的结构 和 <code>Vue</code> 是差不多的。熟悉 <code>Vue</code>之后也能很快上手<code>小程序</code> 了。</p>
+<p>如果我们同学打算应聘<code>软件开发岗位</code>的工作,那么就要做好相应的准备：<code>后端开发</code>应该能用 <code>Spring Boot</code> 做一个简单的<code>网站</code>或是 <code>API</code>（当然越复杂的越能体现自己的水平,不是吗？）; 相对来说,前端开发目前用的比较多的是 <code>Vue</code> 和 <code>React</code>, 当然我们开设的课程是 <code>Vue</code>, 所以要侧重前端开发的同学,应该是把 <code>Vue2 + Element UI</code> 搞熟,如果还能会点<code>小程序</code>什么的,估计那就更吃香了。</p>
+<p>当然,从我和一些往届同学了解到的情况来看, 现在更多需要前后端都会的<code>全栈开发</code>,不过如果你做不到全面,现在应该把其中一方面弄好,另外的多少也要了解掌握一些, 实现上现在是<code>前端开发后端化</code>,你掌握一端之后,另外 一个其实也不会难了。</p>
+<h2 id="现在开始学习还来得及吗"><a href="#现在开始学习还来得及吗" class="headerlink" title="现在开始学习还来得及吗"></a>现在开始学习还来得及吗</h2><p>有同学说,现在学习还来得及吗？ 学习什么时候都不算晚!  我们软件专业开设一门课程,总学时就是 60-70左右,每学时40分钟,所以一门课也就不到 3000分钟的学习时间,大概就是60个小时,如果能每天花四个小时学习,大概就是15天。</p>
+<p>当然了,学校里面还有老师上课,所以很多同学学习一门课程、甚至自己做练习的时间,也就更少了。这么少的时间,估计用来打游戏,还没有能够上手,何况是学习呢？所以那些抱怨自己没学会的同学,反思一下,自己在这个课程上<code>到底花了多少时间做练习</code>,学习不是花听老师讲,看老师做练习,<code>编程的学习是看自己做了多少的练习,解决了练习过程中遇到的多少问题</code>。你的编程能力和解决过的问题多少成正比,光是看视频 的时间以及看老师演示是没有太大意义的。</p>
+<p>所以要是专心去做的话,现在开始补课,还是来得及的。除了上课的教材,网上也有不少的教程资料, B站上也有很多培训公司发面的免费学习视频或是教程,有问题多问会的同学或是老师,如果能在一个课程上投入一到两个星期的时间专心练习,你会有收获的。</p>
+<h2 id="去培训公司可行吗？"><a href="#去培训公司可行吗？" class="headerlink" title="去培训公司可行吗？"></a>去培训公司可行吗？</h2><p>如果有一家公司招聘的时候,说没有任何基础都可以,包教会,然后再安排工作,那么基本上可以确定这是一个<code>培训机构</code>。</p>
+<p>前几天在公司的群里,某小组负责人号召大家给他介绍实习生,说他们那里的项目任务很重,实习来到了可以快速成长。所以,如果你是老板,招一个人来公司,光学习,还给发工资,你会做吗？</p>
+<p>现在的培训公司基本上都已经不认真教技术、教学习了。</p>
+<p>目前的培训公司主要的套路就是跟一些贷款公司合作,让你签一个协议,把钱贷出来给他,然后你自己还那个贷款,他们的核心工作都放在怎么让你贷款这个事情 上面的。</p>
+<p>很多培训公司并不愿意认真教技术了,因为那个周期长效益不好。他们更加喜欢让学员背一些面试技巧,如果你用这些技巧通过公司面试,那他们就完成了协议,就算完不成,贷款的人是你自己,公司早就已经把钱装入口袋了,到时候贷款公司来找的人也是你,而不是培训机构, 这个事情是14级的某个同学找工作时候的亲身经历, 当时他一直和我联系, 和我探讨找工作遇到的各种问题。 最终他通过了面试,但<code>实习期</code>过了没能留下来 。</p>
+<img src="/2022/10/20/coding-peasant-diary-2022-10-20/peixun20221020144739.jpg" class="" title="QQ">
+
+<h2 id="去面试开发岗位的实习要准备什么"><a href="#去面试开发岗位的实习要准备什么" class="headerlink" title="去面试开发岗位的实习要准备什么?"></a>去面试开发岗位的实习要准备什么?</h2><p>我没有参加过公司的面试, 之前和部门中 11级的那位同学聊过, 他说自己以前在学校的时候学得也不怎么好,出来了好长时间也找不到合适的工作,后来也是自己静下心来认真地钻研,然后做了一个小项目去参加面试才进入第一家开发公司的。按照11级学长的说法,参加这一类面试,有作品说话是最好的：做一个<code>查改增删</code>的小项目,把项目部署到网上(如果可以的话), 那些公司负责招聘的人看到这类项目,并询问一些相关问题自然会知道我们相关知识的能力如何。</p>
+<p>实习生并不需要全能, 但公司需要一个能干活的人、或者说需要一个能更快上手干活的人, 自己做过若干个小项目,自然是很有说服力的一种方式。</p>
+<p>当然,有同学会问,那我这个项目要做到什么程度？ 尽自己的能力, 从简单的开始,做到自己能做的最复杂的程序。 几个表的<code>查改增删</code>这些总是需要的吧。其实你能做出基于两个、三个表的项目,那再多几个表其实也不是什么很难的事情了。</p>
+<p>总的来说大概就是：你自己能独立写一点功能相对完整的小项目(其实这也是我上课的时候、考试要求的), 如果能够把几门相关课程的知识结合起来那就会更好, 比如 <code>Java</code> 开发的后端、<code>Vue</code> 做的前端, <code>uniapp</code> 做的移动端或小程序或 <code>Flutter</code> 等。 或是基于某些 <code>API</code> 做的<code>前端</code>、<code>移动端</code>什么的。</p>
+<p>假如你还不能独立写一些代码,去面试开发岗位是有些困难的,或是面试成功了,到公司之后使用相应的开发框架也要花费更多的时间和精力,最终付出的学习成本并不会少。</p>
+<p>当然了,非软件开发的岗位我就不提了,不了解,也不好说些什么。</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>毕业设计展之后大家就要出去找工作了,希望有志从事软件开发工作的同学,在这段时间里想好自己要做什么,有时间的话,认真补一下自己的不足的课程还来得及, 实在不行,可以从现在到<code>过年</code>的这段时间认真补,时间还是足够的,最后祝大家都能找到一个满意的工作。</p>
+<img src="/2022/10/20/coding-peasant-diary-2022-10-20/river_brige_20221020091950.jpg" class="" title="river and brige">
+
+<p>&#x3D;&#x3D;&#x3D; END &#x3D;&#x3D;&#x3D;</p>
+<hr>
+<!-- flag of hidden posts --></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://hujiyi.github.io">laohoodman</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://hujiyi.github.io/2022/10/20/coding-peasant-diary-2022-10-20/">https://hujiyi.github.io/2022/10/20/coding-peasant-diary-2022-10-20/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://hujiyi.github.io" target="_blank">Laohoo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/diary/">diary</a></div><div class="post-share"><div class="social-share" data-image="https://hujiyi.github.io/2022/09/02/coding-peasant-diary-2022-09-02/IMG20220830075543.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="/pluginsSrc/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="/pluginsSrc/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">laohoodman</div><div class="author-info-description">如果你交给某人一个程序，你将折磨他一整天；如果你教某人如何编写程序，你将折磨他一辈子。 —— David Leinweber.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hujiyi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hujiyi" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B920%E7%BA%A7%E8%BD%AF%E4%BB%B6%E4%B8%93%E4%B8%9A%E7%9A%84%E5%90%8C%E5%AD%A6%E8%B0%88%E8%B0%88%E6%9C%89%E5%85%B3%E5%AE%9E%E4%B9%A0%E7%9A%84%E4%BD%93%E4%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">对20级软件专业的同学谈谈有关实习的体会</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E6%89%80%E5%9C%A8%E7%9A%84%E9%83%A8%E9%97%A8%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">1.1.</span> <span class="toc-text">我所在的部门的情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E6%89%80%E5%9C%A8%E7%9A%84%E9%A1%B9%E7%9B%AE%E5%B0%8F%E7%BB%84%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">1.2.</span> <span class="toc-text">我所在的项目小组的情况</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%80%E8%88%AC%E6%B5%81%E7%A8%8B%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">项目开发的一般流程：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E7%90%86%E8%A7%A3%E7%9A%84%E4%B8%80%E8%88%AC%E6%8A%80%E6%9C%AF%E5%85%AC%E5%8F%B8%E6%8B%9B%E8%81%98%E5%AE%9E%E4%B9%A0%E7%9A%84%E9%9C%80%E6%B1%82"><span class="toc-number">1.4.</span> <span class="toc-text">我理解的一般技术公司招聘实习的需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%BE%E5%AE%9E%E4%B9%A0%E5%B7%A5%E4%BD%9C%E8%A6%81%E5%81%9A%E5%93%AA%E4%BA%9B%E5%87%86%E5%A4%87"><span class="toc-number">1.5.</span> <span class="toc-text">找实习工作要做哪些准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%B0%E5%9C%A8%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0%E8%BF%98%E6%9D%A5%E5%BE%97%E5%8F%8A%E5%90%97"><span class="toc-number">1.6.</span> <span class="toc-text">现在开始学习还来得及吗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%BB%E5%9F%B9%E8%AE%AD%E5%85%AC%E5%8F%B8%E5%8F%AF%E8%A1%8C%E5%90%97%EF%BC%9F"><span class="toc-number">1.7.</span> <span class="toc-text">去培训公司可行吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%BB%E9%9D%A2%E8%AF%95%E5%BC%80%E5%8F%91%E5%B2%97%E4%BD%8D%E7%9A%84%E5%AE%9E%E4%B9%A0%E8%A6%81%E5%87%86%E5%A4%87%E4%BB%80%E4%B9%88"><span class="toc-number">1.8.</span> <span class="toc-text">去面试开发岗位的实习要准备什么?</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-number">2.</span> <span class="toc-text">最后</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/11/16/learn-vue3-000/" title="Learn Vue3 目录"><img src="https://hujiyi.github.io/2024/11/16/hello-world/00/vuetoc.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learn Vue3 目录"/></a><div class="content"><a class="title" href="/2024/11/16/learn-vue3-000/" title="Learn Vue3 目录">Learn Vue3 目录</a><time datetime="2024-11-16T12:35:53.000Z" title="发表于 2024-11-16 20:35:53">2024-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/27/flutter-tutorial-toc/" title="Flutter Tutorial Table Of Content"><img src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Flutter Tutorial Table Of Content"/></a><div class="content"><a class="title" href="/2023/02/27/flutter-tutorial-toc/" title="Flutter Tutorial Table Of Content">Flutter Tutorial Table Of Content</a><time datetime="2023-02-27T05:11:08.000Z" title="发表于 2023-02-27 13:11:08">2023-02-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/16/linux-from-scratch-toc/" title="从 Linux From Scratch 构建自己的操作系统 - 目录"><img src="https://hujiyi.github.io/2023/02/16/linux-from-scratch-toc/Linux-From-Scratch.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从 Linux From Scratch 构建自己的操作系统 - 目录"/></a><div class="content"><a class="title" href="/2023/02/16/linux-from-scratch-toc/" title="从 Linux From Scratch 构建自己的操作系统 - 目录">从 Linux From Scratch 构建自己的操作系统 - 目录</a><time datetime="2023-02-16T05:04:02.000Z" title="发表于 2023-02-16 13:04:02">2023-02-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/05/installing-mysql-zip-archive-in-windows/" title="在 Windows 安装解压版的 MySQL 8"><img src="https://hujiyi.github.io/2023/01/05/installing-mysql-zip-archive-in-windows/admin-mysql-logo900.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在 Windows 安装解压版的 MySQL 8"/></a><div class="content"><a class="title" href="/2023/01/05/installing-mysql-zip-archive-in-windows/" title="在 Windows 安装解压版的 MySQL 8">在 Windows 安装解压版的 MySQL 8</a><time datetime="2023-01-05T05:05:51.000Z" title="发表于 2023-01-05 13:05:51">2023-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/" title="使用 electron 和 vuetify 创建 Vue3 桌面应用程序"><img src="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/electron.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用 electron 和 vuetify 创建 Vue3 桌面应用程序"/></a><div class="content"><a class="title" href="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/" title="使用 electron 和 vuetify 创建 Vue3 桌面应用程序">使用 electron 和 vuetify 创建 Vue3 桌面应用程序</a><time datetime="2022-11-21T01:23:54.000Z" title="发表于 2022-11-21 09:23:54">2022-11-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By laohoodman</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="/js/jquery.min.js"></script><script src="/js/fishes.js"></script><script src="/js/fish.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="/pluginsSrc/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Flutter 基础组件 - 图片和图标组件(Image) | Laohoo</title><meta name="robots" content="noindex"><meta name="author" content="laohoodman"><meta name="copyright" content="laohoodman"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="图片组件是Flutter基础组件之一，和文本组件一样必不可少。图片组件包含Image和Icon两个组件，本质上Icon不属于图片组件，但其外形效果上类似于图片。 在项目中建议优先使用Icon组件，Icon本质上是一种字体，只不过显示的不是文字，而是图标，而Image组件先通过图片解码器将图片解码，所以Icon有如下优点：  通常情况下，图标比图片体积更小，显著的减少App包体积。  图标不会出现失">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter 基础组件 - 图片和图标组件(Image)">
+<meta property="og:url" content="https://hujiyi.github.io/2023/03/06/flutter-tutorial-003/index.html">
+<meta property="og:site_name" content="Laohoo">
+<meta property="og:description" content="图片组件是Flutter基础组件之一，和文本组件一样必不可少。图片组件包含Image和Icon两个组件，本质上Icon不属于图片组件，但其外形效果上类似于图片。 在项目中建议优先使用Icon组件，Icon本质上是一种字体，只不过显示的不是文字，而是图标，而Image组件先通过图片解码器将图片解码，所以Icon有如下优点：  通常情况下，图标比图片体积更小，显著的减少App包体积。  图标不会出现失">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png">
+<meta property="article:published_time" content="2023-03-06T14:33:48.000Z">
+<meta property="article:modified_time" content="2023-03-06T14:50:31.393Z">
+<meta property="article:author" content="laohoodman">
+<meta property="article:tag" content="flutter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hujiyi.github.io/2023/03/06/flutter-tutorial-003/index.html"><link rel="preconnect"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: '/pluginsSrc/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Flutter 基础组件 - 图片和图标组件(Image)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Laohoo</span></a><a class="nav-page-title" href="/"><span class="site-name">Flutter 基础组件 - 图片和图标组件(Image)</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Flutter 基础组件 - 图片和图标组件(Image)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-06T14:33:48.000Z" title="发表于 2023-03-06 22:33:48">2023-03-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-06T14:50:31.393Z" title="更新于 2023-03-06 22:50:31">2023-03-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/flutter/">flutter</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>图片组件是<code>Flutter</code>基础组件之一，和文本组件一样必不可少。图片组件包含<code>Image</code>和<code>Icon</code>两个组件，本质上<code>Icon</code>不属于图片组件，但其外形效果上类似于图片。</p>
+<p>在项目中建议优先使用<code>Icon</code>组件，<code>Icon</code>本质上是一种字体，只不过显示的不是文字，而是图标，而<code>Image</code>组件先通过图片解码器将图片解码，所以<code>Icon</code>有如下优点：</p>
+<ul>
+<li><p>通常情况下，图标比图片体积更小，显著的减少<code>App</code>包体积。</p>
+</li>
+<li><p>图标不会出现失真或者模糊的现象，例如将<code>20x20</code>的图片，渲染在<code>200x200</code>的屏幕上，图片会失真或模糊，而图标是矢量图，不会失真，就像字体一样。</p>
+</li>
+<li><p>多个图标可以存放在一个文件中，方便管理。</p>
+</li>
+<li><p>全平台通用。</p>
+</li>
+</ul>
+<h1 id="图片组件-Image"><a href="#图片组件-Image" class="headerlink" title="图片组件 Image"></a>图片组件 <code>Image</code></h1><p><code>Image</code>组件用于显示图片，图片的来源可以是网络、项目中图片或者设备上的图片。</p>
+<h2 id="加载网络图片："><a href="#加载网络图片：" class="headerlink" title="加载网络图片："></a>加载网络图片：</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Image.network(</span><br><span class="line">  <span class="string">&#x27;http://pic1.win4000.com/pic/c/cf/cdc983699c.jpg&#x27;</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h2 id="加载项目中图片："><a href="#加载项目中图片：" class="headerlink" title="加载项目中图片："></a>加载项目中图片：</h2><p>首先将图片拷贝到项目中，通常情况下，拷贝到<code>assets/images/</code>目录下，<code>assets/images/</code>目录为手动创建，新建的项目默认是没有此目录的。</p>
+<p>设置<code>pubspec.yaml</code>配置文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">assets:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">assets/images/</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>指定文件夹名字，加载该文件夹中的<code>所有</code>资源 </p>
+</blockquote>
+<p>或者指定具体图片的名称：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">assets:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">assets/images/aa.jpg</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>指定具体文件名, 只加载<code>该指定</code>文件</p>
+</blockquote>
+<p>通常情况下，使用第一种方式，因为图片会有很多张，增加一张就这里配置一个太麻烦。</p>
+<blockquote>
+<p>注意：<code>assets</code> 前面的空格问题，极容易引发编译异常，正确格式如下：</p>
+</blockquote>
+<p>加载图片：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Image.asset(<span class="string">&#x27;assets/images/aa.jpg&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>加载设备上的图片：</p>
+<p>要加载设备（手机）上的图片首先需要获取设备图片的路径，由于不同平台的路径不同，因此路径的获取必须依靠原生支持，如果了解原生（<code>Android和iOS</code>）开发，可以直接使用<code>MethodChannel</code>获取路径，如果不懂原生（<code>Android和iOS</code>）开发，可以使用第三方插件获取路径，这里推荐官方的<code>path_provider</code> 。</p>
+<p>加载设备上的图片:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Image.file(File(<span class="string">&#x27;path&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>设置图片的大小：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Image.asset(<span class="string">&#x27;assets/images/aa.jpg&#x27;</span>,width: <span class="number">100</span>,height: <span class="number">200</span>,),</span><br></pre></td></tr></table></figure>
+
+<p>当<code>Image</code>的大小和图片大小不匹配时，需要设置填充模式<code>fit</code>，设置组件大小为<code>150x150</code>，</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Container(</span><br><span class="line">  color: Colors.red.withOpacity(<span class="number">.3</span>),</span><br><span class="line">  child: Image.asset(<span class="string">&#x27;assets/images/aa.jpg&#x27;</span>,width: <span class="number">150</span>,height: <span class="number">150</span>),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>看到，图片左右两边有空白区域（浅红色填充的区域），如果想要图片<code>充满</code>整个区域，设置如下：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Container(</span><br><span class="line">  color: Colors.red.withOpacity(<span class="number">.3</span>),</span><br><span class="line">  child: Image.asset(<span class="string">&#x27;assets/images/aa.jpg&#x27;</span>,width: <span class="number">150</span>,height: <span class="number">150</span>,fit: BoxFit.fill,),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+<p>虽然图片充满整个区域，但图片变形了，使图片等比拉伸，直到两边都充满区域：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Container(</span><br><span class="line">  color: Colors.red.withOpacity(<span class="number">.3</span>),</span><br><span class="line">  child: Image.asset(<span class="string">&#x27;assets/images/aa.jpg&#x27;</span>,width: <span class="number">150</span>,height: <span class="number">150</span>,fit: BoxFit.cover,),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>此时，图片未变形且两边都充满区域，不过图片被裁减了一部分。</p>
+<p><code>fit</code>参数就是设置填充方式，其值介绍如下：</p>
+<ul>
+<li><p><code>fill</code>：完全填充，宽高比可能会变。</p>
+</li>
+<li><p><code>contain</code>：等比拉伸，直到一边填充满。</p>
+</li>
+<li><p><code>cover</code>：等比拉伸，直到2边都填充满，此时一边可能超出范围。</p>
+</li>
+<li><p><code>fitWidth</code>：等比拉伸，宽填充满。</p>
+</li>
+<li><p><code>fitHeight</code>：等比拉伸，高填充满。</p>
+</li>
+<li><p><code>none</code>：当组件比图片小时，不拉伸，超出范围截取。</p>
+</li>
+<li><p><code>scaleDown</code>：当组件比图片小时，图片等比缩小，效果和<code>contain</code>一样。</p>
+</li>
+</ul>
+<p><code>BoxFit.none</code>的裁减和<code>alignment</code>相关，默认居中，</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Image.asset(</span><br><span class="line">  <span class="string">&#x27;assets/images/aa.jpg&#x27;</span>,</span><br><span class="line">  width: <span class="number">150</span>,</span><br><span class="line">  height: <span class="number">150</span>,</span><br><span class="line">  fit: BoxFit.none,</span><br><span class="line">  alignment: Alignment.centerRight,</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+
+
+
+<p>设置对齐方式：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Container(</span><br><span class="line">  color: Colors.red.withOpacity(<span class="number">.3</span>),</span><br><span class="line">  child: Image.asset(</span><br><span class="line">    <span class="string">&#x27;assets/images/aa.jpg&#x27;</span>,</span><br><span class="line">    width: <span class="number">150</span>,</span><br><span class="line">    height: <span class="number">150</span>,</span><br><span class="line">    alignment: Alignment.centerLeft,</span><br><span class="line">  ),</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+
+<p><code>color</code>和<code>colorBlendMode</code>用于将颜色和图片进行颜色混合，<code>colorBlendMode</code>表示混合模式，下面介绍的混合模式比较多，浏览一遍即可，此属性可以用于简单的滤镜效果。</p>
+<pre><code>clear：清楚源图像和目标图像。
+
+color：获取源图像的色相和饱和度以及目标图像的光度。
+
+colorBurn：将目标的倒数除以源，然后将结果倒数。
+
+colorDodge：将目标除以源的倒数。
+
+darken：通过从每个颜色通道中选择最小值来合成源图像和目标图像。
+
+difference：从每个通道的较大值中减去较小的值。合成黑色没有效果。合成白色会使另一张图像的颜色反转。
+
+dst：仅绘制目标图像。
+
+dstATop：将目标图像合成到源图像上，但仅在与源图像重叠的位置合成。
+
+dstIn：显示目标图像，但仅显示两个图像重叠的位置。不渲染源图像，仅将其视为蒙版。源的颜色通道将被忽略，只有不透明度才起作用。
+
+dstOut：显示目标图像，但仅显示两个图像不重叠的位置。不渲染源图像，仅将其视为蒙版。源的颜色通道将被忽略，只有不透明度才起作用。
+
+dstOver：将源图像合成到目标图像下。
+
+exclusion：从两个图像的总和中减去两个图像的乘积的两倍。
+
+hardLight：调整源图像和目标图像的成分以使其适合源图像之后，将它们相乘。
+
+hue：获取源图像的色相，以及目标图像的饱和度和光度。
+
+lighten：通过从每个颜色通道中选择最大值来合成源图像和目标图像。
+
+luminosity：获取源图像的亮度，以及目标图像的色相和饱和度。
+
+modulate：将源图像和目标图像的颜色分量相乘。
+
+multiply：将源图像和目标图像的分量相乘，包括alpha通道。
+
+overlay：调整源图像和目标图像的分量以使其适合目标后，将它们相乘。
+
+plus：对源图像和目标图像的组成部分求和。
+
+saturation：获取源图像的饱和度以及目标图像的色相和亮度。
+
+screen：将源图像和目标图像的分量的逆值相乘，然后对结果求逆。
+
+softLight：对于低于0.5的源值使用colorDodge，对于高于0.5的源值使用colorBurn。
+
+src：放置目标图像，仅绘制源图像。
+
+srcATop：将源图像合成到目标图像上，但仅在与目标图像重叠的位置合成。
+
+srcIn：显示源图像，但仅显示两个图像重叠的位置。目标图像未渲染，仅被视为蒙版。目标的颜色通道将被忽略，只有不透明度才起作用。
+
+srcOut：显示源图像，但仅显示两个图像不重叠的位置。
+
+srcOver：将源图像合成到目标图像上。
+
+xor：将按位异或运算符应用于源图像和目标图像。
+</code></pre>
+<p><code>repeat</code>表示当组件有空余位置时，将会重复显示图片</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Image.asset(</span><br><span class="line">  <span class="string">&#x27;assets/images/aa.jpg&#x27;</span>,</span><br><span class="line">  width: <span class="built_in">double</span>.infinity,</span><br><span class="line">  height: <span class="number">150</span>,</span><br><span class="line">  repeat: ImageRepeat.repeatX,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>重复的模式有：</p>
+<pre><code>repeat：x,y方向都充满。
+
+repeatX：x方向充满。
+
+repeatY：y方向充满。
+
+noRepeat：不重复。
+</code></pre>
+<p><code>matchTextDirection</code>设置为<code>true</code>时，图片的绘制方向为<code>TextDirection</code>设置的方向，其父组件必须为<code>Directionality</code>：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Directionality(</span><br><span class="line">    textDirection: TextDirection.rtl,</span><br><span class="line">    child: Image.asset(</span><br><span class="line">      <span class="string">&#x27;assets/images/logo.png&#x27;</span>,</span><br><span class="line">      height: <span class="number">150</span>,</span><br><span class="line">      matchTextDirection: <span class="keyword">true</span>,</span><br><span class="line">    )),</span><br></pre></td></tr></table></figure>
+
+
+<p><code>filterQuality</code>表示绘制图像的质量，从高到低为：<code>high</code>-&gt;<code>medium</code>-&gt;<code>low</code>-&gt;<code>none</code>。越高效果越好，越平滑，当然性能损耗越大，默认是<code>low</code>，如果发现图片有锯齿，可以设置此参数。</p>
+<p>当加载图片的时候回调<code>frameBuilder</code>，当此参数为<code>null</code>时，此控件将会在图片加载完成后显示，未加载完成时显示空白，尤其在加载网络图片时会更明显。因此此参数可以用于处理图片加载时显示占位图片和加载图片的过渡效果，比如淡入淡出效果。</p>
+<p>下面的案例是淡入淡出效果：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Image.network(</span><br><span class="line">  <span class="string">&#x27;https://flutter.github.io/assets-for-api-docs/assets/widgets/puffin.jpg&#x27;</span>,</span><br><span class="line">  frameBuilder: (BuildContext context, Widget child, <span class="built_in">int</span> frame,</span><br><span class="line">      <span class="built_in">bool</span> wasSynchronouslyLoaded) &#123;</span><br><span class="line">    <span class="keyword">if</span> (wasSynchronouslyLoaded) &#123;</span><br><span class="line">      <span class="keyword">return</span> child;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> AnimatedOpacity(</span><br><span class="line">      child: child,</span><br><span class="line">      opacity: frame == <span class="keyword">null</span> ? <span class="number">0</span> : <span class="number">1</span>,</span><br><span class="line">      duration: <span class="keyword">const</span> <span class="built_in">Duration</span>(seconds: <span class="number">2</span>),</span><br><span class="line">      curve: Curves.easeOut,</span><br><span class="line">    );</span><br><span class="line">  &#125;,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><code>loadingBuilder</code>参数比<code>frameBuilder</code>控制的力度更细，可以获取图片加载的进度，下面的案例显示了加载进度条：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Image.network(</span><br><span class="line">    <span class="string">&#x27;https://flutter.github.io/assets-for-api-docs/assets/widgets/puffin.jpg&#x27;</span>,</span><br><span class="line">    loadingBuilder: (BuildContext context, Widget child,</span><br><span class="line">        ImageChunkEvent loadingProgress) &#123;</span><br><span class="line">  <span class="keyword">if</span> (loadingProgress == <span class="keyword">null</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> child;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> Center(</span><br><span class="line">    child: CircularProgressIndicator(</span><br><span class="line">      value: loadingProgress.expectedTotalBytes != <span class="keyword">null</span></span><br><span class="line">          ? loadingProgress.cumulativeBytesLoaded /</span><br><span class="line">              loadingProgress.expectedTotalBytes</span><br><span class="line">          : <span class="keyword">null</span>,</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>centerSlice</code>用于<code>.9图</code>，<code>.9图</code>用于拉伸图片的特定区域，<code>centerSlice</code>设置的区域（<code>Rect</code>）就是拉伸的区域。<code>.9图</code>通常用于控件大小、宽高比不固定的场景，比如聊天背景图片等。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Container(</span><br><span class="line">    width: <span class="number">250</span>,</span><br><span class="line">    height: <span class="number">300</span>,</span><br><span class="line">    decoration: BoxDecoration(</span><br><span class="line">        image: DecorationImage(</span><br><span class="line">            centerSlice: Rect.fromLTWH(<span class="number">20</span>, <span class="number">20</span>, <span class="number">10</span>, <span class="number">10</span>),</span><br><span class="line">            image: AssetImage(</span><br><span class="line">              <span class="string">&#x27;assets/images/abc.jpg&#x27;</span>,</span><br><span class="line">            ),</span><br><span class="line">            fit: BoxFit.fill))),</span><br></pre></td></tr></table></figure>
+
+<h1 id="图标Icon"><a href="#图标Icon" class="headerlink" title="图标Icon"></a>图标<code>Icon</code></h1><p><code>Icon</code> 是图标组件, <code>Icon</code>不具有交互属性，如果想要交互，可以使用<code>IconButton</code>。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Icon(Icons.add),</span><br></pre></td></tr></table></figure>
+
+<p>设置图标的大小和颜色：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Icon(</span><br><span class="line">  Icons.add,</span><br><span class="line">  size: <span class="number">40</span>,</span><br><span class="line">  color: Colors.red,</span><br><span class="line">)</span><br></pre></td></tr></table></figure><!-- flag of hidden posts --></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://hujiyi.github.io">laohoodman</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://hujiyi.github.io/2023/03/06/flutter-tutorial-003/">https://hujiyi.github.io/2023/03/06/flutter-tutorial-003/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://hujiyi.github.io" target="_blank">Laohoo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/flutter/">flutter</a></div><div class="post-share"><div class="social-share" data-image="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="/pluginsSrc/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="/pluginsSrc/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2021/12/04/flutter-development-environment-configuration/" title="在 Windows 10&#x2F;11 配置 Flutter 开发环境"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-04</div><div class="info-item-2">在 Windows 10&#x2F;11 配置 Flutter 开发环境</div></div><div class="info-2"><div class="info-item-1">关联文章 在 Windows 中同时安装多个 JDK  使用 Android SDK 命令行工具搭建 Flutter 开发环境   安装 Flutter SDKFlutter 到现在为止, 还处于高速发展的初始阶段, Flutter SDK 的各个大版本之间, 存在一些不兼容的情况, 所以建议选择使用 stable 发行通道的 Flutter SDK 最新版本。 下载 Flutter SDKFlutter SDK 下载地址：  Flutter 官方网站：https://docs.flutter.dev/development/tools/sdk/releases  清华大学镜像：https://mirrors.tuna.tsinghua.edu.cn/flutter/flutter_infra_release/releases/stable/windows/   解压 Flutter SDK将压缩包解压, 然后把其中的 flutter 目录整个放在你想放置 Flutter SDK 的路径中（例如 D:\AppData, 解压后路径为: D:\AppData\flutter）,...</div></div></div></a><a class="pagination-related" href="/2023/02/27/flutter-tutorial-toc/" title="Flutter Tutorial Table Of Content"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-27</div><div class="info-item-2">Flutter Tutorial Table Of Content</div></div><div class="info-2"><div class="info-item-1"> 目录 基础组件 Flutter 基础组件 - 图片和图标组件  布局组件 Flutter 布局组件 - 水平&#x2F;垂直组件(Row&#x2F;Column)  [Flutter 布局组件 - 叠加布局组件(Stack&#x2F;IndexedStack)]  [Flutter 布局组件 - 流式布局组件(Wrap)]  [Flutter 布局组件 - 自定义布局组件(Flow)]   定位装饰权重组件 Flutter 定位装饰权重组件 - 定位装饰组件(Container)  滚动组件 [Flutter 滚动组件 - ListView]  [Flutter 滚动组件 - GridView]  [Flutter 滚动组件 - PageView]   数据组件 [Flutter 数据组件 - DataTable]  布局实例 Flutter 布局实例 - 静态布局构建实例  [Flutter 布局实例 - 无限滚动布局实例]   状态管理 Flutter Riverpod 使用示例 - 计数器  开始使用 Flutter Riverpod 进行状态管理(一)  开始使用...</div></div></div></a><a class="pagination-related" href="/2022/10/09/install-flutter-on-linux-mint-21/" title="在 Linux Mint 21 安装 Flutter 开发环境"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-09</div><div class="info-item-2">在 Linux Mint 21 安装 Flutter 开发环境</div></div><div class="info-2"><div class="info-item-1">开发环境： Dell Inspiron I5 7559   Intel Core i5 6th Gen 6300HQ (2.30GHz)  NVIDIA GeForce GTX 960M   Linux Mint 21 5.15.0-48-generic, locale en_US.UTF-8   OpenJDK Runtime Environment (build 11.0.16+8-post-Ubuntu-0ubuntu122.04)  Visual Studio Code 1.72.0  Flutter version 3.3.4 on channel stable  Git 2.34.1    前段时间把用了六年的 Dell Inspiron I5 7559 处理了一下: 拆掉失效的电池; 把买电脑时自带的 128GB 固态硬盘装回去; 把500GB的机械硬盘拆下来, 放到硬盘底座上当个移动硬盘用; 然后给它安装了一个 Linux Mint 21。 本来想给 NVIDIA GeForce GTX 960M 显卡安装一个 NVIDIA 驱动的, 试着安装了几个版本不成功,...</div></div></div></a><a class="pagination-related" href="/2022/05/04/use-freezed-with-flutter/" title="在 Flutter 中使用 Freezed"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-04</div><div class="info-item-2">在 Flutter 中使用 Freezed</div></div><div class="info-2"><div class="info-item-1">https://github.com/rrousselGit/freezed https://www.developer.school/tutorials/how-to-use-freezed-with-flutter https://runble1.com/flutter-freezed-tutorial/ Freezed 是一个不可变类的代码生成器, 用于数据类&#x2F;联合&#x2F;模式匹配&#x2F;克隆的代码生成器。不可变类的代码生成具有简单的语法&#x2F;API，而不会影响功能。 在 Dart/Flutter 中定义模型(model)的时候, 经常要附加以下的工作：  定义一个构造函数+属性 覆盖 toString、运算符 &#x3D;&#x3D;、hashCode 实现一个 copyWith 方法来克隆对象 处理反序列化  除此之外，Dart 还缺少联合类型和模式匹配等功能。实现所有这些可能需要数百行代码，这很容易出错并且模型的可读性显着。 Freezed...</div></div></div></a><a class="pagination-related" href="/2022/04/09/flutter-navigator-using-go-router/" title="在 Flutter中使用 go_router 配置路由"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-09</div><div class="info-item-2">在 Flutter中使用 go_router 配置路由</div></div><div class="info-2"><div class="info-item-1">go_router 基于 Navigation 2 的 Flutter 声明式路由, 通过使用声明式路由来降低复杂性, 适用于各种不同的目标平台(mobile、Web、desktop), 是由 Flutter 生态系统委员会选出的表现出最高质量水平的软件包(Flutter Favorites)。 开发环境： Microsoft Windows 10 Enterprise LTSC [Version 10.0.19044.1586], locale zh-CN  Flutter 2.10.3 • Channel Stable, Dart 2.16.1   Visual Studio Code, 64-bit edition (version 1.66.1)  OpenJDK Runtime Environment (build 11.0.11+9-b60-7590822)  Android SDK version 30.0.3, Platform android-31, build-tools 30.0.3   新建项目执行命令，创建新项目：flutter create...</div></div></div></a><a class="pagination-related" href="/2022/03/18/build-flutter-dev-environment-with-cmdline-tools/" title="使用 Android SDK 命令行工具搭建 Flutter 开发环境"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-18</div><div class="info-item-2">使用 Android SDK 命令行工具搭建 Flutter 开发环境</div></div><div class="info-2"><div class="info-item-1">准备的软件： Flutter SDK (stable channel), 下载地址：https://docs.flutter.dev/development/tools/sdk/releases  OpenJDK 11 (可以使用其他的 JDK, 最低版本要求是 11, 可以使用更高版本的 JDK )  Android SDK Command-line Tools(latest) 下载地址：https://developer.android.google.cn/studio?hl=zh-cn#command-tools  Visual Studio Code 下载地址：https://code.visualstudio.com/Download  雷电模拟器、 夜神模拟器 或 Android Studio 自带的模拟器任选一个（也可以使用其他可以连接到开发工具的模拟器）,雷电模拟器 安装好即可使用; 夜神模拟器 需要做一个额外的配置。    最新版的 Android Studio 安装文件夹下的 jre 文件夹是自带的 OpenJDK 11.0.10, 我从另外一台安装有...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">laohoodman</div><div class="author-info-description">如果你交给某人一个程序，你将折磨他一整天；如果你教某人如何编写程序，你将折磨他一辈子。 —— David Leinweber.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hujiyi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hujiyi" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%BB%84%E4%BB%B6-Image"><span class="toc-number">1.</span> <span class="toc-text">图片组件 Image</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E7%BD%91%E7%BB%9C%E5%9B%BE%E7%89%87%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">加载网络图片：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%9B%BE%E7%89%87%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">加载项目中图片：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E6%A0%87Icon"><span class="toc-number">2.</span> <span class="toc-text">图标Icon</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/11/16/learn-vue3-000/" title="Learn Vue3 目录"><img src="https://hujiyi.github.io/2024/11/16/hello-world/00/vuetoc.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learn Vue3 目录"/></a><div class="content"><a class="title" href="/2024/11/16/learn-vue3-000/" title="Learn Vue3 目录">Learn Vue3 目录</a><time datetime="2024-11-16T12:35:53.000Z" title="发表于 2024-11-16 20:35:53">2024-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/27/flutter-tutorial-toc/" title="Flutter Tutorial Table Of Content"><img src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Flutter Tutorial Table Of Content"/></a><div class="content"><a class="title" href="/2023/02/27/flutter-tutorial-toc/" title="Flutter Tutorial Table Of Content">Flutter Tutorial Table Of Content</a><time datetime="2023-02-27T05:11:08.000Z" title="发表于 2023-02-27 13:11:08">2023-02-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/16/linux-from-scratch-toc/" title="从 Linux From Scratch 构建自己的操作系统 - 目录"><img src="https://hujiyi.github.io/2023/02/16/linux-from-scratch-toc/Linux-From-Scratch.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从 Linux From Scratch 构建自己的操作系统 - 目录"/></a><div class="content"><a class="title" href="/2023/02/16/linux-from-scratch-toc/" title="从 Linux From Scratch 构建自己的操作系统 - 目录">从 Linux From Scratch 构建自己的操作系统 - 目录</a><time datetime="2023-02-16T05:04:02.000Z" title="发表于 2023-02-16 13:04:02">2023-02-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/05/installing-mysql-zip-archive-in-windows/" title="在 Windows 安装解压版的 MySQL 8"><img src="https://hujiyi.github.io/2023/01/05/installing-mysql-zip-archive-in-windows/admin-mysql-logo900.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在 Windows 安装解压版的 MySQL 8"/></a><div class="content"><a class="title" href="/2023/01/05/installing-mysql-zip-archive-in-windows/" title="在 Windows 安装解压版的 MySQL 8">在 Windows 安装解压版的 MySQL 8</a><time datetime="2023-01-05T05:05:51.000Z" title="发表于 2023-01-05 13:05:51">2023-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/" title="使用 electron 和 vuetify 创建 Vue3 桌面应用程序"><img src="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/electron.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用 electron 和 vuetify 创建 Vue3 桌面应用程序"/></a><div class="content"><a class="title" href="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/" title="使用 electron 和 vuetify 创建 Vue3 桌面应用程序">使用 electron 和 vuetify 创建 Vue3 桌面应用程序</a><time datetime="2022-11-21T01:23:54.000Z" title="发表于 2022-11-21 09:23:54">2022-11-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By laohoodman</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="/js/jquery.min.js"></script><script src="/js/fishes.js"></script><script src="/js/fish.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="/pluginsSrc/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

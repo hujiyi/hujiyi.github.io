@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>coding peasant diary 2022 10 17 | Laohoo</title><meta name="robots" content="noindex"><meta name="author" content="laohoodman"><meta name="copyright" content="laohoodman"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="article">
+<meta property="og:title" content="coding peasant diary 2022 10 17">
+<meta property="og:url" content="https://hujiyi.github.io/2022/10/17/coding-peasant-diary-2022-10-17/index.html">
+<meta property="og:site_name" content="Laohoo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hujiyi.github.io/2022/09/02/coding-peasant-diary-2022-09-02/IMG20220830075543.png">
+<meta property="article:published_time" content="2022-10-17T08:57:20.000Z">
+<meta property="article:modified_time" content="2022-10-17T09:33:51.471Z">
+<meta property="article:author" content="laohoodman">
+<meta property="article:tag" content="diary">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hujiyi.github.io/2022/09/02/coding-peasant-diary-2022-09-02/IMG20220830075543.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hujiyi.github.io/2022/10/17/coding-peasant-diary-2022-10-17/index.html"><link rel="preconnect"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: '/pluginsSrc/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'coding peasant diary 2022 10 17',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://hujiyi.github.io/2022/09/02/coding-peasant-diary-2022-09-02/IMG20220830075543.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Laohoo</span></a><a class="nav-page-title" href="/"><span class="site-name">coding peasant diary 2022 10 17</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">coding peasant diary 2022 10 17</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-17T08:57:20.000Z" title="发表于 2022-10-17 16:57:20">2022-10-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-17T09:33:51.471Z" title="更新于 2022-10-17 17:33:51">2022-10-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/diary/">diary</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><img src="/2022/10/17/coding-peasant-diary-2022-10-17/naning_weather_20221017.png" class="" title="weather">
+
+<p>经过国庆假期后连续七天的煎熬, 让人觉得上班是一件很痛苦的速与。</p>
+<p>周五的时候刷了一天的邮箱, 也没有得到 <code>JetBrains</code> 的教育授权确认邮件, 本以为说要周一才会有结果了, 但是周六无聊时没抱什么希望打开邮箱的时候, 却发现收到了<code>教育授权</code>确认的邮件, 都是英文的, 大概是中国区这边确认了名单什么的, 再由总部那边发出来的吧。通过邮件提供的链接, 进去确认接受协议什么的就完成了。</p>
+<p>前面连续几天电脑在下午的时候死机, 也不知道是那方面的问题, 总的来说怀疑问题来自两方面: 一是虚拟机, 二是<code>IDEA</code>的破解程序; 所以干脆又一次重新安装系统。</p>
+<p>之前的 <code>Windows 11</code> 镜像文件安装后还要再一次升级, 所以还要再去弄一个新版的吧, 虽然换了好多个 <code>DNS</code>, 甚至改了 <code>hosts</code>, 但连接服务器以及下载文件还是很糟糕, 基本上还是看运气。</p>
+<p>重新安装系统, 直接在安装的时候输入序列号, 安装好直接变成数字激活状态。安装时跳过联网的步骤还是有点麻烦, 要修改注册表, 后面找到一个只需要使用命令的方式, 不知道有没有用, 以后有机会再试吧。</p>
+<p>新的 <code>22621.675</code> 感觉和前一个版本有很大的变化, 资源管理器变成了标签式, 窗口也不再把所有内容都显示出来了, 很干净, 感觉比之前的版本好用, 不过标签式的窗口还不是很适应, 所以还是经常习惯打开多个窗口。</p>
+<p>早上出门, 在江北大道上又遇到了那个问哪里有菜市场的老头子, 我想躲开他, 可是他却突然跑上来问我哪里有菜市场, 我不理他, 往前走,这个疯子竟然开始骂人, 然后跑过来追我, 朝我踢了一脚, 踢到了我左脚的小腿, 那一刻, 我捏紧了拳头, 真的想打过去。</p>
+<p>可是理智告诉我, 打倒他, 可能我就有大麻烦了, 最后还是往前走, 避开了这个疯老头。</p>
+<p>到了公司, 把开发环境剩余的部分安排完毕, 看看桌面上的那卫健委系统优化的清单, 还是开始动手吧。先把数据库备份成 SQL 文件, 然后还原到自己的电脑, 修改相关的配置文件, 再把这些文件从 git 跟踪文件中排除。</p>
+<p>修改了实体类和相关的文件, 运行前端项目, 查询原来记录没有问题, 添加了一条记录, 记录添加成功, 可是查询的时候, 新增的字段并没有出现在结果中。打开相关的文件一个个看, 除了实体类要添加 getter 和 setter 之外, 其他地方好象是没有问题的。</p>
+<p>几乎把那几个代码都翻遍了, 也没得个结果, 于是在钉钉上截了图, 打算问问键哥, 不过听他们在远处的交谈, 感觉应该是挺忙的。好象就我比较闲, 最后想想还是算了, 再看看能不能找出问题的所在吧。</p>
+<p>检查数据库文件, 发现那几个字段也没有值, 有没有可能是添加方法的问题呢? 添加方面写得很简单, 简单到不太可能出问题, 抱着试一试的态度, 直接在数据库中给那几个字段添加值, 查询、出结果了。好吧, 又是自己吓自己。在前端项目中, 给相应的字段添加需要的字典值, 再添加一条新的记录, 字段数量太多了, 多到很容易漏掉, 也容易搞不清楚字段名的含义。</p>
+<p>明天看看能不能处理一下前端的界面, 看看能不能把他们结合起来。</p>
+<img src="/2022/10/17/coding-peasant-diary-2022-10-17/164931.png" class="" title="work">
+
+<hr>
+<p>昨天晚上把墨水屏手机弄了一下, 今天带着两个手机出门, 尽可能不要使用彩色的手机。墨水屏手机真是不怎么好用啊, 最麻烦的地方还是腾讯, <code>微信</code>和<code>QQ</code>每次只能在一个手机登录, 然后有一个<code>394462751</code> 的号码, 不给登录了, 说是要拿以前登录这个号码的手机来扫码, 选择了其他的认证方式, 先是绑定手机, 然后还要绑定身份证号码, 妈的, 银行开户都没有这么麻烦, 不用还不行吗?</p>
+<img src="/2022/10/17/coding-peasant-diary-2022-10-17/20221017165124.jpg" class="" title="river and brige">
+
+<p>&#x3D;&#x3D;&#x3D; END &#x3D;&#x3D;&#x3D;</p>
+<hr>
+<!-- flag of hidden posts --></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://hujiyi.github.io">laohoodman</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://hujiyi.github.io/2022/10/17/coding-peasant-diary-2022-10-17/">https://hujiyi.github.io/2022/10/17/coding-peasant-diary-2022-10-17/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://hujiyi.github.io" target="_blank">Laohoo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/diary/">diary</a></div><div class="post-share"><div class="social-share" data-image="https://hujiyi.github.io/2022/09/02/coding-peasant-diary-2022-09-02/IMG20220830075543.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="/pluginsSrc/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="/pluginsSrc/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">laohoodman</div><div class="author-info-description">如果你交给某人一个程序，你将折磨他一整天；如果你教某人如何编写程序，你将折磨他一辈子。 —— David Leinweber.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hujiyi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hujiyi" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/11/16/learn-vue3-000/" title="Learn Vue3 目录"><img src="https://hujiyi.github.io/2024/11/16/hello-world/00/vuetoc.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learn Vue3 目录"/></a><div class="content"><a class="title" href="/2024/11/16/learn-vue3-000/" title="Learn Vue3 目录">Learn Vue3 目录</a><time datetime="2024-11-16T12:35:53.000Z" title="发表于 2024-11-16 20:35:53">2024-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/27/flutter-tutorial-toc/" title="Flutter Tutorial Table Of Content"><img src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Flutter Tutorial Table Of Content"/></a><div class="content"><a class="title" href="/2023/02/27/flutter-tutorial-toc/" title="Flutter Tutorial Table Of Content">Flutter Tutorial Table Of Content</a><time datetime="2023-02-27T05:11:08.000Z" title="发表于 2023-02-27 13:11:08">2023-02-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/16/linux-from-scratch-toc/" title="从 Linux From Scratch 构建自己的操作系统 - 目录"><img src="https://hujiyi.github.io/2023/02/16/linux-from-scratch-toc/Linux-From-Scratch.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从 Linux From Scratch 构建自己的操作系统 - 目录"/></a><div class="content"><a class="title" href="/2023/02/16/linux-from-scratch-toc/" title="从 Linux From Scratch 构建自己的操作系统 - 目录">从 Linux From Scratch 构建自己的操作系统 - 目录</a><time datetime="2023-02-16T05:04:02.000Z" title="发表于 2023-02-16 13:04:02">2023-02-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/05/installing-mysql-zip-archive-in-windows/" title="在 Windows 安装解压版的 MySQL 8"><img src="https://hujiyi.github.io/2023/01/05/installing-mysql-zip-archive-in-windows/admin-mysql-logo900.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在 Windows 安装解压版的 MySQL 8"/></a><div class="content"><a class="title" href="/2023/01/05/installing-mysql-zip-archive-in-windows/" title="在 Windows 安装解压版的 MySQL 8">在 Windows 安装解压版的 MySQL 8</a><time datetime="2023-01-05T05:05:51.000Z" title="发表于 2023-01-05 13:05:51">2023-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/" title="使用 electron 和 vuetify 创建 Vue3 桌面应用程序"><img src="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/electron.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用 electron 和 vuetify 创建 Vue3 桌面应用程序"/></a><div class="content"><a class="title" href="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/" title="使用 electron 和 vuetify 创建 Vue3 桌面应用程序">使用 electron 和 vuetify 创建 Vue3 桌面应用程序</a><time datetime="2022-11-21T01:23:54.000Z" title="发表于 2022-11-21 09:23:54">2022-11-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By laohoodman</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="/js/jquery.min.js"></script><script src="/js/fishes.js"></script><script src="/js/fish.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="/pluginsSrc/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

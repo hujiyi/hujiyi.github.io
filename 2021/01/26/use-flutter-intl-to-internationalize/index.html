@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Visual Studio Code 中使用 flutter_intl 实现 Flutter 应用国际化 | Laohoo</title><meta name="author" content="laohoodman"><meta name="copyright" content="laohoodman"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="·Flutter Intl· 插件，包含用于处理国际化&#x2F;本地化消息，日期和数字格式和解析，双向文本以及其他国际化问题。 安装 Flutter Intl 插件   在项目的 pubspec.yaml 文件中添加依赖： 123456dependencies:  flutter:    sdk: flutter  # 国际化  flutter_localizations:    sdk: fl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Visual Studio Code 中使用 flutter_intl 实现 Flutter 应用国际化">
+<meta property="og:url" content="https://hujiyi.github.io/2021/01/26/use-flutter-intl-to-internationalize/index.html">
+<meta property="og:site_name" content="Laohoo">
+<meta property="og:description" content="·Flutter Intl· 插件，包含用于处理国际化&#x2F;本地化消息，日期和数字格式和解析，双向文本以及其他国际化问题。 安装 Flutter Intl 插件   在项目的 pubspec.yaml 文件中添加依赖： 123456dependencies:  flutter:    sdk: flutter  # 国际化  flutter_localizations:    sdk: fl">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hujiyi.github.io/2021/01/26/use-flutter-intl-to-internationalize/localizationalize.jpg">
+<meta property="article:published_time" content="2021-01-26T06:08:09.000Z">
+<meta property="article:modified_time" content="2023-02-27T07:08:27.659Z">
+<meta property="article:author" content="laohoodman">
+<meta property="article:tag" content="flutter">
+<meta property="article:tag" content="国际化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hujiyi.github.io/2021/01/26/use-flutter-intl-to-internationalize/localizationalize.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hujiyi.github.io/2021/01/26/use-flutter-intl-to-internationalize/index.html"><link rel="preconnect"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: '/pluginsSrc/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Visual Studio Code 中使用 flutter_intl 实现 Flutter 应用国际化',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://hujiyi.github.io/2021/01/26/use-flutter-intl-to-internationalize/localizationalize.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Laohoo</span></a><a class="nav-page-title" href="/"><span class="site-name">Visual Studio Code 中使用 flutter_intl 实现 Flutter 应用国际化</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Visual Studio Code 中使用 flutter_intl 实现 Flutter 应用国际化</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-26T06:08:09.000Z" title="发表于 2021-01-26 14:08:09">2021-01-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-27T07:08:27.659Z" title="更新于 2023-02-27 15:08:27">2023-02-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/flutter/">flutter</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">986</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>·Flutter Intl· 插件，包含用于处理国际化&#x2F;本地化消息，日期和数字格式和解析，双向文本以及其他国际化问题。</p>
+<h2 id="安装-Flutter-Intl-插件"><a href="#安装-Flutter-Intl-插件" class="headerlink" title="安装 Flutter Intl 插件"></a>安装 <code>Flutter Intl</code> 插件</h2><img src="/2021/01/26/use-flutter-intl-to-internationalize/flutter_intl.jpg" class="" title="flutter_intl.jpg">
+
+
+<p>在项目的 <code>pubspec.yaml</code> 文件中添加依赖：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dependencies:</span><br><span class="line">  flutter:</span><br><span class="line">    sdk: flutter</span><br><span class="line">  # 国际化</span><br><span class="line">  flutter_localizations:</span><br><span class="line">    sdk: flutter</span><br></pre></td></tr></table></figure>
+<h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><p>在<code>Visual Studio Code</code>中打开命令面板: View -&gt; Command Palette…</p>
+<img src="/2021/01/26/use-flutter-intl-to-internationalize/command_palette.png" class="" title="command_palette">
+
+
+<p>在打开的命令面板中输入 <code>flutter intl</code>, 在下拉的命令项中选择：<code>Flutter Intl: Initialze</code>， 开始执行项目的初始化。</p>
+<img src="/2021/01/26/use-flutter-intl-to-internationalize/initialize.png" class="" title="initialize">
+
+<p>初始化执行成功后，会自动在 <code>pubspec.yaml</code> 末尾增加：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flutter_intl:</span><br><span class="line">  enabled: true</span><br></pre></td></tr></table></figure>
+
+<p>同时在 <code>lib</code> 文件夹下生成 <code>generated</code> 和 <code>l10n</code> 两个文件夹</p>
+<img src="/2021/01/26/use-flutter-intl-to-internationalize/initialze_finish.png" class="" title="initialze_finish">
+
+<blockquote>
+<p><code>generated</code>包下的<code>intl</code>目录默认生成 <code>messages_all.dart</code> 和 <code>messages_en.dart</code> 文件，messages开头的文件无需手动修改，是自动生成的。</p>
+</blockquote>
+<blockquote>
+<p><code>generated</code> 包下的 <code>I10n.dart</code> 是 <code>Localizations</code>和 <code>Delegate</code> 的实现，无需手动修改，是自动生成的。</p>
+</blockquote>
+<blockquote>
+<p><code>l10n</code>包下存在一个<code>intl_en.arb</code>文件，文案存放在此处。</p>
+</blockquote>
+<blockquote>
+<p>ARB文件扩展名为：<code>Application Resource Bundle</code> 意为应用程序资源包，并得到Google的支持，每个.arb文件都包含一个JSON表，该表从资源ID映射到本地化值，文件名包含已为其转换值的语言环境。</p>
+</blockquote>
+<h2 id="添加语言"><a href="#添加语言" class="headerlink" title="添加语言"></a>添加语言</h2><p>在<code>Visual Studio Code</code>中打开命令面板: View -&gt; Command Palette…</p>
+<p>在打开的命令面板中输入 <code>flutter intl</code>, 在下拉的命令项中选择：<code>Flutter Intl: Add Locale</code>。</p>
+<img src="/2021/01/26/use-flutter-intl-to-internationalize/add_locale.png" class="" title="add_locale">
+
+<p>在命令面板中输入中文的语言名称：<code>zh</code></p>
+<img src="/2021/01/26/use-flutter-intl-to-internationalize/add_locale_zh.png" class="" title="add_locale_zh">
+
+<p>添加语言成功后，在 <code>generated\intl</code> 文件夹下多了一个名为<code>messages_zh.dart</code> 的文件</p>
+<p>在 <code>l10n</code> 文件夹下多了一个名为 <code>intl_zh.arb</code> 的文件</p>
+<img src="/2021/01/26/use-flutter-intl-to-internationalize/add_locale_zh_finish.png" class="" title="add_locale_zh_finish">
+
+<h2 id="添加系统国际化支持"><a href="#添加系统国际化支持" class="headerlink" title="添加系统国际化支持"></a>添加系统国际化支持</h2><p>MaterialApp 修改如下：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">MaterialApp(</span><br><span class="line">  ...</span><br><span class="line">  localizationsDelegates: [</span><br><span class="line">        S.delegate,</span><br><span class="line">        GlobalMaterialLocalizations.delegate,</span><br><span class="line">        GlobalWidgetsLocalizations.delegate,</span><br><span class="line">        GlobalCupertinoLocalizations.delegate,</span><br><span class="line">      ],</span><br><span class="line">      <span class="comment">// 将 en设置为第一项, 没有适配语言时, 英语为首选项</span></span><br><span class="line">      supportedLocales: [</span><br><span class="line">        <span class="keyword">const</span> Locale(<span class="string">&#x27;en&#x27;</span>, <span class="string">&#x27;&#x27;</span>),</span><br><span class="line">        ...S.delegate.supportedLocales</span><br><span class="line">      ],</span><br><span class="line">      <span class="comment">// 插件目前不完善手动处理简繁体</span></span><br><span class="line">      localeResolutionCallback: (locale, supportLocales) &#123;</span><br><span class="line">        <span class="comment">// 中文 简繁体处理</span></span><br><span class="line">        <span class="keyword">if</span> (locale?.languageCode == <span class="string">&#x27;zh&#x27;</span>) &#123;</span><br><span class="line">          <span class="comment">// zh-CN：地区限制匹配规范，表示用在中国大陆区域的中文。</span></span><br><span class="line">          <span class="comment">// 包括各种大方言、小方言、繁体、简体等等都可以被匹配到。</span></span><br><span class="line">          <span class="keyword">if</span> (locale?.scriptCode == <span class="string">&#x27;Hant&#x27;</span>) &#123;</span><br><span class="line">            <span class="comment">// zh-Hant和zh-CHT相同相对应;</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">const</span> Locale(<span class="string">&#x27;zh&#x27;</span>, <span class="string">&#x27;HK&#x27;</span>); <span class="comment">//繁体</span></span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// zh-Hans：语言限制匹配规范，表示简体中文</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">const</span> Locale(<span class="string">&#x27;zh&#x27;</span>, <span class="string">&#x27;CN&#x27;</span>); <span class="comment">//简体</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>解释下上面这段代码出现的变量</p>
+<blockquote>
+<p><code>localizationsDelegates</code> 列表中的元素是生成本地化值集合的工厂。</p>
+</blockquote>
+<blockquote>
+<p><code>S.delegate</code>  项目的本地化委托类，插件自动生成，它会根据你的arb文件自动生成对应的函数。</p>
+</blockquote>
+<blockquote>
+<p><code>GlobalMaterialLocalizations.delegate</code> 为<code>Material Components</code>库提供了本地化的字符串和其他值。</p>
+</blockquote>
+<blockquote>
+<p><code>GlobalCupertinoLocalizations.delegate</code> 为<code>Cupertino Components</code>库提供了本地化的字符串和其他值。</p>
+</blockquote>
+<blockquote>
+<p><code>GlobalWidgetsLocalizations.delegate</code>定义<code>widget</code>默认的文本方向，从左到右或从右到左。</p>
+</blockquote>
+<blockquote>
+<p><code>supportedLocales</code>支持的本地化。</p>
+</blockquote>
+<blockquote>
+<p><code>S.delegate.supportedLocales</code> 项目支持的本地化，插件自动生成，它会在你添加arb文件时自动更新你的支持的本地化。</p>
+</blockquote>
+<p>在 <code>intl_en.arb</code> 和 <code>intl_zh.arb</code> 下添加文案</p>
+<p>添加一个 <code>title</code> 文案，<code>intl_en.arb</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;title&quot;: &quot;hello word&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>intl_zh.arb</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;title&quot;: &quot;你好&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>保存修改，<code>generated</code> 目录下相关文件将会重新生成。</p>
+<h2 id="使用Flutter-Intl"><a href="#使用Flutter-Intl" class="headerlink" title="使用Flutter Intl"></a>使用Flutter Intl</h2><p>普通使用</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;content&quot;</span>: <span class="string">&quot;内容&quot;</span>&#125;</span><br><span class="line">S.of(context).content</span><br></pre></td></tr></table></figure>
+
+<p>占位</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;welcome&quot;</span>: <span class="string">&quot;welcome &#123;name&#125;&quot;</span>&#125;</span><br><span class="line">S.of(context).welcome(<span class="string">&quot;phoenixsky&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>重复占位</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;goodStudy&quot;</span>: <span class="string">&quot;&#123;good&#125;&#123;good&#125;学习,&#123;day&#125;&#123;day&#125;向上&quot;</span>&#125;</span><br><span class="line">S.of(context).goodStudy(<span class="string">&quot;好&quot;</span>, <span class="string">&quot;天&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p>复数形式</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;getMessageTips&quot;</span>: <span class="string">&quot;&#123;howMany, plural, zero&#123;You have no message&#125; one&#123;You have 1 message&#125; other&#123;You have &#123;howMany&#125; messages&#125;&#125;&quot;</span>&#125;</span><br><span class="line">S.of(context).getMessageTips(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p>参考:<a target="_blank" rel="noopener" href="https://github.com/localizely/flutter-intl-plugin-sample-app">https://github.com/localizely/flutter-intl-plugin-sample-app</a></p>
+<p>&#x3D;&#x3D;&#x3D;END&#x3D;&#x3D;&#x3D;</p>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://hujiyi.github.io">laohoodman</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://hujiyi.github.io/2021/01/26/use-flutter-intl-to-internationalize/">https://hujiyi.github.io/2021/01/26/use-flutter-intl-to-internationalize/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://hujiyi.github.io" target="_blank">Laohoo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/flutter/">flutter</a><a class="post-meta__tags" href="/tags/%E5%9B%BD%E9%99%85%E5%8C%96/">国际化</a></div><div class="post-share"><div class="social-share" data-image="https://hujiyi.github.io/2021/01/26/use-flutter-intl-to-internationalize/localizationalize.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="/pluginsSrc/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="/pluginsSrc/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2021/02/02/flutter-introduction-part-I/" title="flutter introduction part I：创建项目及多语言国际化支持"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">flutter introduction part I：创建项目及多语言国际化支持</div></div><div class="info-2"><div class="info-item-1"> 特别说明：Flutter SDK 1.22.5 及以上版本需要依赖 Git ， 所以下面输入 flutter命令的时候，一般都是在 Git Bash 命令行窗口 中进行。   D:\sources\flutter_repos 是专门用于保存 Flutter 项目的文件夹。  创建项目在 D:\sources\flutter_repos(或其他用于保存 Flutter 项目的文件夹) 文件夹下鼠标右键，在弹出的快捷菜单中选择Git Bash Here 打开 Git Bash 命令行窗口    在打开的Git Bash 命令行窗口中输入命令： flutter create...</div></div></div></a><a class="pagination-related" href="/2021/01/20/create-a-vue-app-based-vuetify-and-leancloud-part-II/" title="创建基于 Vuetify 和 leancloud 的 Vue.js 应用程序(二)"><img class="cover" src="https://hujiyi.github.io/2021/01/20/create-a-vue-app-based-vuetify-and-leancloud-part-I/vuetify.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">创建基于 Vuetify 和 leancloud 的 Vue.js 应用程序(二)</div></div><div class="info-2"><div class="info-item-1">路由规划本项目在实现的是一个论坛网站，网站划分为三个部分:  前台用户界面：主要是论坛的主题；主题的详细内容及评论；  帐号管理界面：主要是注册、登录等功能；  后台管理界面：主要是主题的管理；评论内容的管理等功能；   修改路由文件打开文件：src/router/index.js， 编辑其内容如以下代码： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788import Vue from &#x27;vue&#x27;;import VueRouter from &#x27;vue-router&#x27;;Vue.use(VueRouter);const routes = [  &#123;    path: &#x27;/&#x27;,   // 前台页面模块及其嵌套子路由   ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2021/02/02/flutter-introduction-part-I/" title="flutter introduction part I：创建项目及多语言国际化支持"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-02</div><div class="info-item-2">flutter introduction part I：创建项目及多语言国际化支持</div></div><div class="info-2"><div class="info-item-1"> 特别说明：Flutter SDK 1.22.5 及以上版本需要依赖 Git ， 所以下面输入 flutter命令的时候，一般都是在 Git Bash 命令行窗口 中进行。   D:\sources\flutter_repos 是专门用于保存 Flutter 项目的文件夹。  创建项目在 D:\sources\flutter_repos(或其他用于保存 Flutter 项目的文件夹) 文件夹下鼠标右键，在弹出的快捷菜单中选择Git Bash Here 打开 Git Bash 命令行窗口    在打开的Git Bash 命令行窗口中输入命令： flutter create...</div></div></div></a><a class="pagination-related" href="/2021/12/04/flutter-development-environment-configuration/" title="在 Windows 10&#x2F;11 配置 Flutter 开发环境"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-04</div><div class="info-item-2">在 Windows 10&#x2F;11 配置 Flutter 开发环境</div></div><div class="info-2"><div class="info-item-1">关联文章 在 Windows 中同时安装多个 JDK  使用 Android SDK 命令行工具搭建 Flutter 开发环境   安装 Flutter SDKFlutter 到现在为止, 还处于高速发展的初始阶段, Flutter SDK 的各个大版本之间, 存在一些不兼容的情况, 所以建议选择使用 stable 发行通道的 Flutter SDK 最新版本。 下载 Flutter SDKFlutter SDK 下载地址：  Flutter 官方网站：https://docs.flutter.dev/development/tools/sdk/releases  清华大学镜像：https://mirrors.tuna.tsinghua.edu.cn/flutter/flutter_infra_release/releases/stable/windows/   解压 Flutter SDK将压缩包解压, 然后把其中的 flutter 目录整个放在你想放置 Flutter SDK 的路径中（例如 D:\AppData, 解压后路径为: D:\AppData\flutter）,...</div></div></div></a><a class="pagination-related" href="/2023/02/27/flutter-tutorial-toc/" title="Flutter Tutorial Table Of Content"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-27</div><div class="info-item-2">Flutter Tutorial Table Of Content</div></div><div class="info-2"><div class="info-item-1"> 目录 基础组件 Flutter 基础组件 - 图片和图标组件  布局组件 Flutter 布局组件 - 水平&#x2F;垂直组件(Row&#x2F;Column)  [Flutter 布局组件 - 叠加布局组件(Stack&#x2F;IndexedStack)]  [Flutter 布局组件 - 流式布局组件(Wrap)]  [Flutter 布局组件 - 自定义布局组件(Flow)]   定位装饰权重组件 Flutter 定位装饰权重组件 - 定位装饰组件(Container)  滚动组件 [Flutter 滚动组件 - ListView]  [Flutter 滚动组件 - GridView]  [Flutter 滚动组件 - PageView]   数据组件 [Flutter 数据组件 - DataTable]  布局实例 Flutter 布局实例 - 静态布局构建实例  [Flutter 布局实例 - 无限滚动布局实例]   状态管理 Flutter Riverpod 使用示例 - 计数器  开始使用 Flutter Riverpod 进行状态管理(一)  开始使用...</div></div></div></a><a class="pagination-related" href="/2022/10/09/install-flutter-on-linux-mint-21/" title="在 Linux Mint 21 安装 Flutter 开发环境"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-09</div><div class="info-item-2">在 Linux Mint 21 安装 Flutter 开发环境</div></div><div class="info-2"><div class="info-item-1">开发环境： Dell Inspiron I5 7559   Intel Core i5 6th Gen 6300HQ (2.30GHz)  NVIDIA GeForce GTX 960M   Linux Mint 21 5.15.0-48-generic, locale en_US.UTF-8   OpenJDK Runtime Environment (build 11.0.16+8-post-Ubuntu-0ubuntu122.04)  Visual Studio Code 1.72.0  Flutter version 3.3.4 on channel stable  Git 2.34.1    前段时间把用了六年的 Dell Inspiron I5 7559 处理了一下: 拆掉失效的电池; 把买电脑时自带的 128GB 固态硬盘装回去; 把500GB的机械硬盘拆下来, 放到硬盘底座上当个移动硬盘用; 然后给它安装了一个 Linux Mint 21。 本来想给 NVIDIA GeForce GTX 960M 显卡安装一个 NVIDIA 驱动的, 试着安装了几个版本不成功,...</div></div></div></a><a class="pagination-related" href="/2022/05/04/use-freezed-with-flutter/" title="在 Flutter 中使用 Freezed"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-04</div><div class="info-item-2">在 Flutter 中使用 Freezed</div></div><div class="info-2"><div class="info-item-1">https://github.com/rrousselGit/freezed https://www.developer.school/tutorials/how-to-use-freezed-with-flutter https://runble1.com/flutter-freezed-tutorial/ Freezed 是一个不可变类的代码生成器, 用于数据类&#x2F;联合&#x2F;模式匹配&#x2F;克隆的代码生成器。不可变类的代码生成具有简单的语法&#x2F;API，而不会影响功能。 在 Dart/Flutter 中定义模型(model)的时候, 经常要附加以下的工作：  定义一个构造函数+属性 覆盖 toString、运算符 &#x3D;&#x3D;、hashCode 实现一个 copyWith 方法来克隆对象 处理反序列化  除此之外，Dart 还缺少联合类型和模式匹配等功能。实现所有这些可能需要数百行代码，这很容易出错并且模型的可读性显着。 Freezed...</div></div></div></a><a class="pagination-related" href="/2022/04/09/flutter-navigator-using-go-router/" title="在 Flutter中使用 go_router 配置路由"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-09</div><div class="info-item-2">在 Flutter中使用 go_router 配置路由</div></div><div class="info-2"><div class="info-item-1">go_router 基于 Navigation 2 的 Flutter 声明式路由, 通过使用声明式路由来降低复杂性, 适用于各种不同的目标平台(mobile、Web、desktop), 是由 Flutter 生态系统委员会选出的表现出最高质量水平的软件包(Flutter Favorites)。 开发环境： Microsoft Windows 10 Enterprise LTSC [Version 10.0.19044.1586], locale zh-CN  Flutter 2.10.3 • Channel Stable, Dart 2.16.1   Visual Studio Code, 64-bit edition (version 1.66.1)  OpenJDK Runtime Environment (build 11.0.11+9-b60-7590822)  Android SDK version 30.0.3, Platform android-31, build-tools 30.0.3   新建项目执行命令，创建新项目：flutter create...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">laohoodman</div><div class="author-info-description">如果你交给某人一个程序，你将折磨他一整天；如果你教某人如何编写程序，你将折磨他一辈子。 —— David Leinweber.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hujiyi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hujiyi" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Flutter-Intl-%E6%8F%92%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">安装 Flutter Intl 插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.</span> <span class="toc-text">初始化项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E8%AF%AD%E8%A8%80"><span class="toc-number">3.</span> <span class="toc-text">添加语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%B3%BB%E7%BB%9F%E5%9B%BD%E9%99%85%E5%8C%96%E6%94%AF%E6%8C%81"><span class="toc-number">4.</span> <span class="toc-text">添加系统国际化支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Flutter-Intl"><span class="toc-number">5.</span> <span class="toc-text">使用Flutter Intl</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/11/16/learn-vue3-000/" title="Learn Vue3 目录"><img src="https://hujiyi.github.io/2024/11/16/hello-world/00/vuetoc.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learn Vue3 目录"/></a><div class="content"><a class="title" href="/2024/11/16/learn-vue3-000/" title="Learn Vue3 目录">Learn Vue3 目录</a><time datetime="2024-11-16T12:35:53.000Z" title="发表于 2024-11-16 20:35:53">2024-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/27/flutter-tutorial-toc/" title="Flutter Tutorial Table Of Content"><img src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Flutter Tutorial Table Of Content"/></a><div class="content"><a class="title" href="/2023/02/27/flutter-tutorial-toc/" title="Flutter Tutorial Table Of Content">Flutter Tutorial Table Of Content</a><time datetime="2023-02-27T05:11:08.000Z" title="发表于 2023-02-27 13:11:08">2023-02-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/16/linux-from-scratch-toc/" title="从 Linux From Scratch 构建自己的操作系统 - 目录"><img src="https://hujiyi.github.io/2023/02/16/linux-from-scratch-toc/Linux-From-Scratch.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从 Linux From Scratch 构建自己的操作系统 - 目录"/></a><div class="content"><a class="title" href="/2023/02/16/linux-from-scratch-toc/" title="从 Linux From Scratch 构建自己的操作系统 - 目录">从 Linux From Scratch 构建自己的操作系统 - 目录</a><time datetime="2023-02-16T05:04:02.000Z" title="发表于 2023-02-16 13:04:02">2023-02-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/05/installing-mysql-zip-archive-in-windows/" title="在 Windows 安装解压版的 MySQL 8"><img src="https://hujiyi.github.io/2023/01/05/installing-mysql-zip-archive-in-windows/admin-mysql-logo900.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在 Windows 安装解压版的 MySQL 8"/></a><div class="content"><a class="title" href="/2023/01/05/installing-mysql-zip-archive-in-windows/" title="在 Windows 安装解压版的 MySQL 8">在 Windows 安装解压版的 MySQL 8</a><time datetime="2023-01-05T05:05:51.000Z" title="发表于 2023-01-05 13:05:51">2023-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/" title="使用 electron 和 vuetify 创建 Vue3 桌面应用程序"><img src="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/electron.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用 electron 和 vuetify 创建 Vue3 桌面应用程序"/></a><div class="content"><a class="title" href="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/" title="使用 electron 和 vuetify 创建 Vue3 桌面应用程序">使用 electron 和 vuetify 创建 Vue3 桌面应用程序</a><time datetime="2022-11-21T01:23:54.000Z" title="发表于 2022-11-21 09:23:54">2022-11-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By laohoodman</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="/js/jquery.min.js"></script><script src="/js/fishes.js"></script><script src="/js/fish.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="/pluginsSrc/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

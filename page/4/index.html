@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Laohoo - 有时间, 就多写点Bug。</title><meta name="author" content="laohoodman"><meta name="copyright" content="laohoodman"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="如果你交给某人一个程序，你将折磨他一整天；如果你教某人如何编写程序，你将折磨他一辈子。 —— David Leinweber.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Laohoo">
+<meta property="og:url" content="https://hujiyi.github.io/page/4/index.html">
+<meta property="og:site_name" content="Laohoo">
+<meta property="og:description" content="如果你交给某人一个程序，你将折磨他一整天；如果你教某人如何编写程序，你将折磨他一辈子。 —— David Leinweber.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/avatar.png">
+<meta property="article:author" content="laohoodman">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/avatar.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hujiyi.github.io/page/4/index.html"><link rel="preconnect"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: '/pluginsSrc/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Laohoo',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/aksenapati_blanket.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Laohoo</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Laohoo</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/hujiyi" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/2022/01/23/develop-an-airplane-game-in-cocos-creator-01/" title="学习笔记：使用 Cocos Creator 3.4.0 开发空战游戏 01——无限滚动的背景"><img class="post-bg" src="https://hujiyi.github.io/2022/01/23/develop-an-airplane-game-in-cocos-creator-01/000.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学习笔记：使用 Cocos Creator 3.4.0 开发空战游戏 01——无限滚动的背景"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/01/23/develop-an-airplane-game-in-cocos-creator-01/" title="学习笔记：使用 Cocos Creator 3.4.0 开发空战游戏 01——无限滚动的背景">学习笔记：使用 Cocos Creator 3.4.0 开发空战游戏 01——无限滚动的背景</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-01-23T06:32:40.000Z" title="发表于 2022-01-23 14:32:40">2022-01-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/cocos-creator/">cocos creator</a></span></div><div class="content">开发工具 Cocos Dashboard 1.0.20 Cocos Creator 3.4.0 Visual Studio Code 1.63 Microsoft Edge 97.0.1072.69  游戏配套素材资源下载：游戏开发配套素材资源  项目准备 启动 Cocos Dashboard, 点 新建 按钮， 项目类型选择 Empty(3D), 输入 项目名称， 选择项目保存 位置，点 创建并打开 按钮，完成项目的创建。     下载 游戏开发配套素材资源 并解压缩到 当前文件夹, 将解压后的 res文件夹 拖动到当前项目的 资源管理器 的 assets 文件夹中。如下图所示：    创建场景 在 资源管理器 中点击选中 assets/ 文件夹， 右键 -&gt; 创建 -&gt; 文件夹, 将文件夹命名为 scene。     在 资源管理器 中点击选中 assets/scene/ 文件夹, 右键 -&gt; 创建 -&gt; 场景, 将场景命名为 airplane。     双击打开 airplane 场景    创建背景材质 在 资源管理器 中点击选中...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/12/21/pip-config-sources/" title="Python pip 使用国内镜像源"><img class="post-bg" src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python pip 使用国内镜像源"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/12/21/pip-config-sources/" title="Python pip 使用国内镜像源">Python pip 使用国内镜像源</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-21T08:41:14.000Z" title="发表于 2021-12-21 16:41:14">2021-12-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/python/">python</a></span></div><div class="content">1、执行以下两个命令，设置全局使用国内源（中科大） 123pip config set global.index-url https://mirrors.ustc.edu.cn/pypi/web/simplepip config set global.trusted-host https://mirrors.ustc.edu.cn/pypi/web/simple  2、输出（查看）现有的pip源： 1pip config list       </div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/12/09/flask-webapi/" title="使用 Flask 编写 RESTful API"><img class="post-bg" src="https://hujiyi.github.io/2021/12/09/flask-webapi/flask.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用 Flask 编写 RESTful API"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/12/09/flask-webapi/" title="使用 Flask 编写 RESTful API">使用 Flask 编写 RESTful API</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-09T12:59:24.000Z" title="发表于 2021-12-09 20:59:24">2021-12-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/flask/">flask</a></span></div><div class="content">HTTP 的常用请求方法如下:   HTTP 方法 行为 示例    GET 获取资源的信息 http://example.com/api/orders   GET 获取某个特定资源的信息 http://example.com/api/orders/123   POST 创建新资源 http://example.com/api/orders   PUT 更新资源 http://example.com/api/orders/123   PATCH 对 PUT 方法的补充，用来对已知资源进行局部更新 http://example.com/api/orders/123   DELETE 删除资源 http://example.com/api/orders/123    REST 设计不需要特定的数据格式。在请求中数据可以以 JSON 形式, 或者有时候作为 url 中查询参数项。  RESTful API规划   HTTP...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/11/22/element-leancloud-project-X/" title="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(十) - 话题详情页及评论"><img class="post-bg" src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(十) - 话题详情页及评论"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/11/22/element-leancloud-project-X/" title="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(十) - 话题详情页及评论">使用 Element UI 和 Leancloud 的 Vue.js 项目开发(十) - 话题详情页及评论</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-22T12:02:09.000Z" title="发表于 2021-11-22 20:02:09">2021-11-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vue-js/">vue.js</a></span></div><div class="content">项目演示地址：https://hujiyi.github.io/acme-world-web/  论坛话题详情页中，首先要显示的是话题有关的内容，比如标题、作者、时间、内容等各种信息 除此以外，还要提供一个用于发表评论的表单，以及显示当前话题已有的评论内容。 评论需要使用一个单独的表(Class) 来进行存放，同时，还要记录是对哪个话题进行的评论。 查询指定 id 的话题，和增加查看次数进入详情页后，要先把指定 id 的话题显示出来，同时这个话题的查看次数也在增加，相应的功能可以添加到 TopicService 中。 打开文件src/api/service/topic_service.js, 修改其内容如以下： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263import LC from &#x27;leancloud-storage&#x27;;  // 导入 leancloud...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/11/21/element-leancloud-project-IX/" title="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(九) - 首页显示话题列表"><img class="post-bg" src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(九) - 首页显示话题列表"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/11/21/element-leancloud-project-IX/" title="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(九) - 首页显示话题列表">使用 Element UI 和 Leancloud 的 Vue.js 项目开发(九) - 首页显示话题列表</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-21T07:31:34.000Z" title="发表于 2021-11-21 15:31:34">2021-11-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vue-js/">vue.js</a></span></div><div class="content">项目演示地址：https://hujiyi.github.io/acme-world-web/  网站前台的规划与路由要显示论坛的话题列表，以及显示话题的详细内容、添加及显示用户的评论，需要添加相应的视图 添加前台视图文件在 src/views/home 文件夹添加一个名为 pages 的文件夹，然后在该文件夹中添加用于显示话题列表的视图文件TopicList.vue 以及 显示话题详情的视图文件 Detail.vue。 src/views/ 文件夹的最终组成结构如以下所示： 1234567891011121314151617181920212223.|-- account|   |-- pages|   |   |-- Login.vue|   |   |-- PasswordReset.vue|   |   `-- SignUp.vue|   `-- Index.vue|-- dashboard|   |-- forum|   |   |-- CommentManager.vue|   |   `-- TopicManager.vue|   |-- layout|   | ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/11/21/element-leancloud-project-VIII/" title="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(八) - 论坛话题管理的实现"><img class="post-bg" src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(八) - 论坛话题管理的实现"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/11/21/element-leancloud-project-VIII/" title="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(八) - 论坛话题管理的实现">使用 Element UI 和 Leancloud 的 Vue.js 项目开发(八) - 论坛话题管理的实现</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-21T02:43:23.000Z" title="发表于 2021-11-21 10:43:23">2021-11-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vue-js/">vue.js</a></span></div><div class="content">项目演示地址：https://hujiyi.github.io/acme-world-web/  论坛话题的数据存储服务类在 src/api/service/ 文件夹下新建 topic_service.js,  打开文件 src/api/service/topic_service.js, 编辑其代码如下： 12345678910111213141516171819import BaseService from &#x27;./base_service&#x27;;  // 导入访问 leancloud 数据存储的基类const TABLE_NAME = &#x27;Topic&#x27;;    // leancloud 中存储数据的表名(Class)/** * 对leancloud应用中 名为 &quot;Topic&quot; 的 Class 进行数据操作的类 */class TopicService extends BaseService &#123;    constructor(table_name) &#123;        // 调用父类的构造函数       ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/11/20/element-leancloud-project-VII/" title="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(七) - LeanCloud 数据存储和路由守卫的使用"><img class="post-bg" src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(七) - LeanCloud 数据存储和路由守卫的使用"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/11/20/element-leancloud-project-VII/" title="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(七) - LeanCloud 数据存储和路由守卫的使用">使用 Element UI 和 Leancloud 的 Vue.js 项目开发(七) - LeanCloud 数据存储和路由守卫的使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-20T13:10:31.000Z" title="发表于 2021-11-20 21:10:31">2021-11-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vue-js/">vue.js</a></span></div><div class="content">项目演示地址：https://hujiyi.github.io/acme-world-web/  LeanCloud 数据存储LeanCloud 数据存储 的两种 ClassLeanCloud 数据存储的 Class 有两种，一种是创建应用时就自带的，这一种Class的名字以 下划线开头，可以在这些 Class 中添加字段， 但一般不要删除；另一种是用户自己创建的 Class，可以由用户自定义需要的字段， 同时，自定义的每个 Class 还会有四个系统自带的字段：objectId, ACL, createdAt, updatedAt， 说明如下：  objectId: 主键字段，实际使用时，可以通过 类名.id 获取值；  ACL: 访问控制列表, 用于权限管理开发，免费用户不可用；  createdAt: 记录创建时间，添加记录时自动产生，不能更改；  updatedAt: 记录更新时间，记录有更新时自动修改，不能由用户进行修改；   在数据存储中创建 Class在数据存储中创建 Class 有两个方法： 方法一：在 LeanCloud 数据存储 的管理界面 手工 添加...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/11/20/element-leancloud-project-VI/" title="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(六) - 实现用户注册、登录、找回密码"><img class="post-bg" src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(六) - 实现用户注册、登录、找回密码"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/11/20/element-leancloud-project-VI/" title="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(六) - 实现用户注册、登录、找回密码">使用 Element UI 和 Leancloud 的 Vue.js 项目开发(六) - 实现用户注册、登录、找回密码</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-20T08:41:31.000Z" title="发表于 2021-11-20 16:41:31">2021-11-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vue-js/">vue.js</a></span></div><div class="content">项目演示地址：https://hujiyi.github.io/acme-world-web/  Leancloud 数据存储LeanCloud（原 AVOS Cloud） 是针对移动应用的一站式云端服务，专注于为应用开发者提供工具和平台。提供包括LeanStorage 数据存储、LeanMessage 通信服务、LeanAnalytics 统计分析、LeanModules 拓展模块等四大类型的后端云服务。当前项目使用了LeanStorage 数据存储来实现论坛数据的保存。 Leancloud SDK 的初始化配置信息LeanCloud 国内默认的是华北节点，但是去年华北节点的文件服务器因为某些原因，出现了域名服务方面的问题。导致文件可以上传，但是没办法访问，所以这里建设使用 华东节点。 登录 Leancloud华东节点 （没有账号的请先注册），然后创建应用，应用名称自己取，操作类似下图:   应用创建成功后，点击该应用最左边的 数据存储 图标，进入应用管理界面，如下图：   在右侧菜单选择：设置 -&gt; 应用凭证, 即可看到当前应用的 AppID, AppKey,...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/11/20/element-leancloud-project-V/" title="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(五) - 后台管理界面"><img class="post-bg" src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(五) - 后台管理界面"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/11/20/element-leancloud-project-V/" title="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(五) - 后台管理界面">使用 Element UI 和 Leancloud 的 Vue.js 项目开发(五) - 后台管理界面</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-20T04:54:25.000Z" title="发表于 2021-11-20 12:54:25">2021-11-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vue-js/">vue.js</a></span></div><div class="content">项目演示地址：https://hujiyi.github.io/acme-world-web/  文件与路由规划相对于其他两大部分来说，后台管理界面的组成更复杂，包含的组件、视图也更多。 为了更方便进行管理， 将相应的文件分别放到不同的文件夹下。就当前项目来说，主要实现一个论坛的后台管理功能，所以在 dashboard 文件夹中分别创建三个文件夹用于存放不同的文件：  layout 文件夹： 用于存放后台管理界面（仪表盘）的组成组件；  forum 文件夹：用于存放和论坛管理有关的视图；  pages 文件夹： 用于存放仪表盘其他部分的视图；    如果有更多的内容，也可以建相应的文件夹进行分类存放  创建文件夹和文件根据以上规划，在 dashboard 文件夹 分别 创建名为：layout 、forum 、pages 的文件夹。 在 src/views/dashboard/forum/ 文件夹下添加以下两个文件：  TopicManager.vue: 论坛话题管理视图；  CommentManager.vue: 话题评论管理视图。   在...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/11/18/element-leancloud-project-IV/" title="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(四) - 登录与注册界面设计"><img class="post-bg" src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/default_bg.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(四) - 登录与注册界面设计"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/11/18/element-leancloud-project-IV/" title="使用 Element UI 和 Leancloud 的 Vue.js 项目开发(四) - 登录与注册界面设计">使用 Element UI 和 Leancloud 的 Vue.js 项目开发(四) - 登录与注册界面设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-11-18T11:12:37.000Z" title="发表于 2021-11-18 19:12:37">2021-11-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/vue-js/">vue.js</a></span></div><div class="content">项目演示地址：https://hujiyi.github.io/acme-world-web/  账号模块的路由规划在当前项目中， 账号模块实现三个部分的功能：用户登录、用户注册、通过邮箱找回密码， 这三个部分都放在 src/views/account/ 文件夹下。 创建文件夹和文件在 src/views/account/ 下创建名为 pages 的文件夹，然后在该文件下添加三个 vue文件：Login.vue, PasswordReset.vue, SignUp.vue。 创建完成后的 views 文件夹下的项目结构如下图： 12345678910|-- account|   |-- pages|   |   |-- Login.vue|   |   |-- PasswordReset.vue|   |   `-- SignUp.vue|   `-- Index.vue|-- dashboard|   `-- Index.vue`-- home    `-- Index.vue  编辑src/views/account/pages/Login.vue,...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/3/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#content-inner">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#content-inner">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/#content-inner">7</a><a class="extend next" rel="next" href="/page/5/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">laohoodman</div><div class="author-info-description">如果你交给某人一个程序，你将折磨他一整天；如果你教某人如何编写程序，你将折磨他一辈子。 —— David Leinweber.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hujiyi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hujiyi" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/11/16/learn-vue3-000/" title="Learn Vue3 目录"><img src="https://hujiyi.github.io/2024/11/16/hello-world/00/vuetoc.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learn Vue3 目录"/></a><div class="content"><a class="title" href="/2024/11/16/learn-vue3-000/" title="Learn Vue3 目录">Learn Vue3 目录</a><time datetime="2024-11-16T12:35:53.000Z" title="发表于 2024-11-16 20:35:53">2024-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/27/flutter-tutorial-toc/" title="Flutter Tutorial Table Of Content"><img src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Flutter Tutorial Table Of Content"/></a><div class="content"><a class="title" href="/2023/02/27/flutter-tutorial-toc/" title="Flutter Tutorial Table Of Content">Flutter Tutorial Table Of Content</a><time datetime="2023-02-27T05:11:08.000Z" title="发表于 2023-02-27 13:11:08">2023-02-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/16/linux-from-scratch-toc/" title="从 Linux From Scratch 构建自己的操作系统 - 目录"><img src="https://hujiyi.github.io/2023/02/16/linux-from-scratch-toc/Linux-From-Scratch.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从 Linux From Scratch 构建自己的操作系统 - 目录"/></a><div class="content"><a class="title" href="/2023/02/16/linux-from-scratch-toc/" title="从 Linux From Scratch 构建自己的操作系统 - 目录">从 Linux From Scratch 构建自己的操作系统 - 目录</a><time datetime="2023-02-16T05:04:02.000Z" title="发表于 2023-02-16 13:04:02">2023-02-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/05/installing-mysql-zip-archive-in-windows/" title="在 Windows 安装解压版的 MySQL 8"><img src="https://hujiyi.github.io/2023/01/05/installing-mysql-zip-archive-in-windows/admin-mysql-logo900.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在 Windows 安装解压版的 MySQL 8"/></a><div class="content"><a class="title" href="/2023/01/05/installing-mysql-zip-archive-in-windows/" title="在 Windows 安装解压版的 MySQL 8">在 Windows 安装解压版的 MySQL 8</a><time datetime="2023-01-05T05:05:51.000Z" title="发表于 2023-01-05 13:05:51">2023-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/" title="使用 electron 和 vuetify 创建 Vue3 桌面应用程序"><img src="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/electron.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用 electron 和 vuetify 创建 Vue3 桌面应用程序"/></a><div class="content"><a class="title" href="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/" title="使用 electron 和 vuetify 创建 Vue3 桌面应用程序">使用 electron 和 vuetify 创建 Vue3 桌面应用程序</a><time datetime="2022-11-21T01:23:54.000Z" title="发表于 2022-11-21 09:23:54">2022-11-21</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+      <i class="fas fa-angle-right"></i></a>
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/NET-Core/"><span class="card-category-list-name">.NET Core</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/ABP-vNext/"><span class="card-category-list-name">ABP vNext</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Hexo/"><span class="card-category-list-name">Hexo</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java/"><span class="card-category-list-name">Java</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/MySQL/"><span class="card-category-list-name">MySQL</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Nginx/"><span class="card-category-list-name">Nginx</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Rust/"><span class="card-category-list-name">Rust</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/vite/" style="font-size: 1.1em; color: #999">vite</a> <a href="/tags/butterfly/" style="font-size: 1.25em; color: #999fa7">butterfly</a> <a href="/tags/django/" style="font-size: 1.35em; color: #99a3b1">django</a> <a href="/tags/vue3/" style="font-size: 1.15em; color: #999b9e">vue3</a> <a href="/tags/vuetify/" style="font-size: 1.3em; color: #99a1ac">vuetify</a> <a href="/tags/element-ui/" style="font-size: 1.5em; color: #99a9bf">element ui</a> <a href="/tags/%E6%B3%A8%E9%87%8A/" style="font-size: 1.1em; color: #999">注释</a> <a href="/tags/javaScript/" style="font-size: 1.1em; color: #999">javaScript</a> <a href="/tags/%E5%9B%BD%E9%99%85%E5%8C%96/" style="font-size: 1.15em; color: #999b9e">国际化</a> <a href="/tags/Rustup/" style="font-size: 1.1em; color: #999">Rustup</a> <a href="/tags/Rider/" style="font-size: 1.1em; color: #999">Rider</a> <a href="/tags/github-pages/" style="font-size: 1.2em; color: #999da3">github pages</a> <a href="/tags/Nginx/" style="font-size: 1.15em; color: #999b9e">Nginx</a> <a href="/tags/command-line-tools/" style="font-size: 1.15em; color: #999b9e">command-line tools</a> <a href="/tags/cocos-creator/" style="font-size: 1.4em; color: #99a5b6">cocos creator</a> <a href="/tags/Rust/" style="font-size: 1.1em; color: #999">Rust</a> <a href="/tags/LFS/" style="font-size: 1.1em; color: #999">LFS</a> <a href="/tags/USTC/" style="font-size: 1.1em; color: #999">USTC</a> <a href="/tags/MySQL/" style="font-size: 1.1em; color: #999">MySQL</a> <a href="/tags/python/" style="font-size: 1.45em; color: #99a7ba">python</a> <a href="/tags/java/" style="font-size: 1.1em; color: #999">java</a> <a href="/tags/freezed/" style="font-size: 1.1em; color: #999">freezed</a> <a href="/tags/GBK/" style="font-size: 1.1em; color: #999">GBK</a> <a href="/tags/electron/" style="font-size: 1.1em; color: #999">electron</a> <a href="/tags/tampermonkey/" style="font-size: 1.1em; color: #999">tampermonkey</a> <a href="/tags/fish/" style="font-size: 1.1em; color: #999">fish</a> <a href="/tags/game/" style="font-size: 1.4em; color: #99a5b6">game</a> <a href="/tags/MariaDB/" style="font-size: 1.1em; color: #999">MariaDB</a> <a href="/tags/HttpClient/" style="font-size: 1.1em; color: #999">HttpClient</a> <a href="/tags/android-studio/" style="font-size: 1.1em; color: #999">android studio</a> <a href="/tags/vue-js/" style="font-size: 1.5em; color: #99a9bf">vue.js</a> <a href="/tags/flutter/" style="font-size: 1.45em; color: #99a7ba">flutter</a> <a href="/tags/provider/" style="font-size: 1.1em; color: #999">provider</a> <a href="/tags/jdk/" style="font-size: 1.1em; color: #999">jdk</a> <a href="/tags/cloud/" style="font-size: 1.1em; color: #999">cloud</a> <a href="/tags/Dependency-Injection/" style="font-size: 1.1em; color: #999">Dependency Injection</a> <a href="/tags/MVC/" style="font-size: 1.1em; color: #999">MVC</a> <a href="/tags/%E8%B7%AF%E7%94%B1/" style="font-size: 1.1em; color: #999">路由</a> <a href="/tags/flask/" style="font-size: 1.1em; color: #999">flask</a> <a href="/tags/tag/" style="font-size: 1.1em; color: #999">tag</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/" title="查看更多"><i class="fas fa-angle-right"></i></a>
+    </div>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/11/">
+          <span class="card-archive-list-date">十一月 2024</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/02/">
+          <span class="card-archive-list-date">二月 2023</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2023/01/">
+          <span class="card-archive-list-date">一月 2023</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2022/11/">
+          <span class="card-archive-list-date">十一月 2022</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2022/10/">
+          <span class="card-archive-list-date">十月 2022</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2022/09/">
+          <span class="card-archive-list-date">九月 2022</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2022/08/">
+          <span class="card-archive-list-date">八月 2022</span>
+          <span class="card-archive-list-count">4</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2022/07/">
+          <span class="card-archive-list-date">七月 2022</span>
+          <span class="card-archive-list-count">5</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">62</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">141.7k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-11-17T09:28:45.543Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By laohoodman</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="/js/jquery.min.js"></script><script src="/js/fishes.js"></script><script src="/js/fish.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="/pluginsSrc/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

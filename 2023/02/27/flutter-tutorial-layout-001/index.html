@@ -1,0 +1,264 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Flutter 布局实例 - 静态布局构建实例 | Laohoo</title><meta name="robots" content="noindex"><meta name="author" content="laohoodman"><meta name="copyright" content="laohoodman"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="以下是 Flutter 官方网站构建布局的例子, 最终创建以下的布局页面:    新建 Flutter 项目安装和配置好 Flutter 开发环境之后, 完成以下的步骤:  创建一个新的 Flutter 应用  项目中新建文件 lib\views\home_view.dart, 编辑内容如下:   12   编辑 lib&#x2F;main.dart 文件的内容如下:  1   在 Android 模拟器中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter 布局实例 - 静态布局构建实例">
+<meta property="og:url" content="https://hujiyi.github.io/2023/02/27/flutter-tutorial-layout-001/index.html">
+<meta property="og:site_name" content="Laohoo">
+<meta property="og:description" content="以下是 Flutter 官方网站构建布局的例子, 最终创建以下的布局页面:    新建 Flutter 项目安装和配置好 Flutter 开发环境之后, 完成以下的步骤:  创建一个新的 Flutter 应用  项目中新建文件 lib\views\home_view.dart, 编辑内容如下:   12   编辑 lib&#x2F;main.dart 文件的内容如下:  1   在 Android 模拟器中">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png">
+<meta property="article:published_time" content="2023-02-27T07:15:09.000Z">
+<meta property="article:modified_time" content="2023-03-06T15:19:30.286Z">
+<meta property="article:author" content="laohoodman">
+<meta property="article:tag" content="flutter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hujiyi.github.io/2023/02/27/flutter-tutorial-layout-001/index.html"><link rel="preconnect"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: '/pluginsSrc/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Flutter 布局实例 - 静态布局构建实例',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Laohoo</span></a><a class="nav-page-title" href="/"><span class="site-name">Flutter 布局实例 - 静态布局构建实例</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Flutter 布局实例 - 静态布局构建实例</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-27T07:15:09.000Z" title="发表于 2023-02-27 15:15:09">2023-02-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-06T15:19:30.286Z" title="更新于 2023-03-06 23:19:30">2023-03-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/flutter/">flutter</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>以下是 <code>Flutter</code> 官方网站构建布局的例子, 最终创建以下的布局页面:</p>
+<img src="/2023/02/27/flutter-tutorial-layout-001/001lakes.webp" class="" title="lakes">
+
+
+<h1 id="新建-Flutter-项目"><a href="#新建-Flutter-项目" class="headerlink" title="新建 Flutter 项目"></a>新建 <code>Flutter</code> 项目</h1><p>安装和配置好 <code>Flutter</code> 开发环境之后, 完成以下的步骤:</p>
+<ol>
+<li><p>创建一个新的 <code>Flutter</code> 应用</p>
+</li>
+<li><p>项目中新建文件 <code>lib\views\home_view.dart</code>, 编辑内容如下:</p>
+</li>
+</ol>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>编辑 <code>lib/main.dart</code> 文件的内容如下:</li>
+</ol>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>在 <code>Android</code> 模拟器中调试运行项目</li>
+</ol>
+<h1 id="对布局进行图形分解"><a href="#对布局进行图形分解" class="headerlink" title="对布局进行图形分解"></a>对布局进行图形分解</h1><p>第一步需要将布局分解成它的各个基础元素：</p>
+<ul>
+<li><p>识别出它的行和列。</p>
+</li>
+<li><p>这个布局是否包含网格布局？</p>
+</li>
+<li><p>是否有重叠的元素？</p>
+</li>
+<li><p>界面是否需要选项卡？</p>
+</li>
+<li><p>留意需要对齐、内间距、或者边界的区域。</p>
+</li>
+</ul>
+<p>首先，识别出稍大的元素。在这个例子中，四个元素排成一列：一个图像，两个行区域，和一个文本区域。</p>
+<img src="/2023/02/27/flutter-tutorial-layout-001/002lakes-column-elts.webp" class="" title="lakes">
+
+<p>接着，对每一行进行图解。</p>
+<p><code>第一行</code>: 图片显示区域</p>
+<p><code>第二行</code>: 也就是标题区域, 有三个子元素：一个文本列, 一个星形图标, 和一个数字。它的第一个子元素，文本列，包含两行文本。第一列占据大量空间，因此它应当被封装在一个 <code>Expanded widget</code> 当中。</p>
+<img src="/2023/02/27/flutter-tutorial-layout-001/003title-section-parts.webp" class="" title="lakes">
+
+
+<p><code>第三行</code>: 也就是按钮区域, 同样有三个子元素：每个子元素是一个包含图标和文本的列。</p>
+<img src="/2023/02/27/flutter-tutorial-layout-001/004button-section-diagram.webp" class="" title="lakes">
+
+
+<p><code>第四行</code>: 文本区域, 显示长段文本内容</p>
+<p>一旦图解好布局，采取自下而上的方法来实现它就变得尤为轻松了。为了最大程度减少，深层嵌套的布局代码带来的视觉混乱，需要用一些变量和函数来替代某些实现。</p>
+<h1 id="实现图片区域"><a href="#实现图片区域" class="headerlink" title="实现图片区域"></a>实现图片区域</h1><p>图片组件是Flutter基础组件之一，和文本组件一样必不可少,</p>
+<p>使用网络图片</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Image.network(</span><br><span class="line">  <span class="string">&#x27;https://media-cdn.tripadvisor.com/media/photo-s/0c/92/17/86/st-mary-lake-glacier.jpg&#x27;</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>使用本地图片</p>
+<p>更新 <code>pubspec.yaml</code> 文件，添加一个 <code>assets</code> 标签。这使得在你的代码中可以访问到该图片。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">flutter:</span>            </span><br><span class="line">  <span class="attr">uses-material-design:</span> <span class="literal">true</span>            </span><br><span class="line">  <span class="attr">assets:</span>            </span><br><span class="line">    <span class="bullet">-</span> <span class="string">images/lake.jpg</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>请注意，<code>pubspec.yaml</code> 区分大小写，因此请编写如上所示的 <code>assets</code>: 和图像 <code>URL</code>。</p>
+</blockquote>
+<blockquote>
+<p><code>pubspec</code> 文件对<code>空格</code>也很<code>敏感</code>，因此请使用适当的缩进。</p>
+</blockquote>
+<p>你可能需要<code>重新启动</code>正在运行的程序（在模拟器或连接的设备上）才能使 <code>pubspec</code> 更改生效。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">body: Column(            </span><br><span class="line">  children: [            </span><br><span class="line">    Image.asset(            </span><br><span class="line">      <span class="string">&#x27;images/lake.jpg&#x27;</span>,            </span><br><span class="line">      width: <span class="number">600</span>,            </span><br><span class="line">      height: <span class="number">240</span>,            </span><br><span class="line">      fit: BoxFit.cover,            </span><br><span class="line">    ), </span><br></pre></td></tr></table></figure>
+
+<h1 id="实现标题行"><a href="#实现标题行" class="headerlink" title="实现标题行"></a>实现标题行</h1><p>首先，构建标题部分左侧列。添加如下代码到 <code>HomeView</code> 类的 <code>build()</code> (与 <code>return Scaffold();</code> 并列)方法内顶部。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">Widget titleSection = Container(</span><br><span class="line">  padding: <span class="keyword">const</span> EdgeInsets.all(<span class="number">32</span>),</span><br><span class="line">  child: Row(</span><br><span class="line">    children: [</span><br><span class="line">      Expanded(</span><br><span class="line">        <span class="comment">/*1*/</span></span><br><span class="line">        child: Column(</span><br><span class="line">          crossAxisAlignment: CrossAxisAlignment.start,</span><br><span class="line">          children: [</span><br><span class="line">            <span class="comment">/*2*/</span></span><br><span class="line">            Container(</span><br><span class="line">              padding: <span class="keyword">const</span> EdgeInsets.only(bottom: <span class="number">8</span>),</span><br><span class="line">              child: <span class="keyword">const</span> Text(</span><br><span class="line">                <span class="string">&#x27;Oeschinen Lake Campground&#x27;</span>,</span><br><span class="line">                style: TextStyle(</span><br><span class="line">                  fontWeight: FontWeight.bold,</span><br><span class="line">                ),</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">            Text(</span><br><span class="line">              <span class="string">&#x27;Kandersteg, Switzerland&#x27;</span>,</span><br><span class="line">              style: TextStyle(</span><br><span class="line">                color: Colors.grey[<span class="number">500</span>],</span><br><span class="line">              ),</span><br><span class="line">            ),</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      <span class="comment">/*3*/</span></span><br><span class="line">      Icon(</span><br><span class="line">        Icons.star,</span><br><span class="line">        color: Colors.red[<span class="number">500</span>],</span><br><span class="line">      ),</span><br><span class="line">      <span class="keyword">const</span> Text(<span class="string">&#x27;41&#x27;</span>),</span><br><span class="line">    ],</span><br><span class="line">  ),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>将 <code>Column</code> 元素放到 <code>Expanded widget</code> 中可以拉伸该列，以利用该行中所有剩余的闲置空间。设置 <code>crossAxisAlignment</code> 属性值为 <code>CrossAxisAlignment.start</code>，这会将该列放置在行的起始位置。</p>
+</blockquote>
+<blockquote>
+<p>将第一行文本放入 <code>Container</code> 容器中使得你可以增加内间距。列中的第二个子元素，同样为文本，显示为灰色。</p>
+</blockquote>
+<blockquote>
+<p>标题行中的最后两项是一个红色星形图标，和文字<code>41</code>。整行都在一个 <code>Container</code> 容器布局中，而且每条边都有 <code>32</code> 像素的内间距。</p>
+</blockquote>
+<p>添加标题部分到<code>body</code> 中, 修改<code>home_view.dart</code> 中的部分代码如下:</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> MaterialApp(            </span><br><span class="line">  title: <span class="string">&#x27;Flutter layout demo&#x27;</span>,            </span><br><span class="line">  home: Scaffold(            </span><br><span class="line">    appBar: AppBar(            </span><br><span class="line">      title: <span class="keyword">const</span> Text(<span class="string">&#x27;Flutter layout demo&#x27;</span>),            </span><br><span class="line">    ),            </span><br><span class="line">    body: Column(            </span><br><span class="line">    children: [            </span><br><span class="line">      titleSection,            </span><br><span class="line">      ],            </span><br><span class="line">    ),            </span><br><span class="line">  ),            </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h1 id="实现按钮行"><a href="#实现按钮行" class="headerlink" title="实现按钮行"></a>实现按钮行</h1><p>按钮区域包含三列使用相同布局－一行文本上面一个图标。此行的各列被等间隙放置，文本和图标被着以初始色。</p>
+<p>由于构建每列的代码基本相同，因此可以创建一个名为 <code>_buildButtonColumn()</code> 的私有辅助函数，以颜色、图标和文本为入参，返回一个以指定颜色绘制自身 <code>widgets</code> 的一个 <code>column</code> 列对象。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeView</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> HomeView(&#123;<span class="keyword">super</span>.key&#125;);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="comment">// ···</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Column _buildButtonColumn(Color color, IconData icon, <span class="built_in">String</span> label) &#123;</span><br><span class="line">    <span class="keyword">return</span> Column(</span><br><span class="line">      mainAxisSize: MainAxisSize.min,</span><br><span class="line">      mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">      children: [</span><br><span class="line">        Icon(icon, color: color),</span><br><span class="line">        Container(</span><br><span class="line">          margin: <span class="keyword">const</span> EdgeInsets.only(top: <span class="number">8</span>),</span><br><span class="line">          child: Text(</span><br><span class="line">            label,</span><br><span class="line">            style: TextStyle(</span><br><span class="line">              fontSize: <span class="number">12</span>,</span><br><span class="line">              fontWeight: FontWeight.w400,</span><br><span class="line">              color: color,</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ],</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>这个函数直接将图标添加到这列里。文本在以一个仅有上间距的 <code>Container</code> 容器中，使得文本与图标分隔开。</p>
+<p>通过调用函数并传递针对某列的<code>颜色</code>，<code>Icon</code> 图标和<code>文本</code>，来构建包含这些列的行。然后在行的主轴方向通过使用 <code>MainAxisAlignment.spaceEvenly</code>，将剩余的空间均分到每列各自的前后及中间。只需在 <code>build()</code> 方法中的 <code>titleSection</code> 声明下添加如下代码：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Color color = Theme.of(context).primaryColor;</span><br><span class="line"></span><br><span class="line">Widget buttonSection = Row(</span><br><span class="line">  mainAxisAlignment: MainAxisAlignment.spaceEvenly,</span><br><span class="line">  children: [</span><br><span class="line">    _buildButtonColumn(color, Icons.call, <span class="string">&#x27;CALL&#x27;</span>),</span><br><span class="line">    _buildButtonColumn(color, Icons.near_me, <span class="string">&#x27;ROUTE&#x27;</span>),</span><br><span class="line">    _buildButtonColumn(color, Icons.share, <span class="string">&#x27;SHARE&#x27;</span>),</span><br><span class="line">  ],</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>添加按钮部分到 <code>body</code> 属性中去：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">body: Column(            </span><br><span class="line">  children: [            </span><br><span class="line">    titleSection,            </span><br><span class="line">    buttonSection,            </span><br><span class="line">  ],            </span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="实现文本区域"><a href="#实现文本区域" class="headerlink" title="实现文本区域"></a>实现文本区域</h1><p>将文本区域定义为一个变量，将文本放置到一个 <code>Container</code> 容器中，然后为每条边添加内边距。只需在 <code>buttonSection</code> 声明的<code>下方</code>添加如下代码：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Widget textSection = <span class="keyword">const</span> Padding(</span><br><span class="line">  padding: EdgeInsets.all(<span class="number">32</span>),</span><br><span class="line">  child: Text(</span><br><span class="line">    <span class="string">&#x27;Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese &#x27;</span></span><br><span class="line">    <span class="string">&#x27;Alps. Situated 1,578 meters above sea level, it is one of the &#x27;</span></span><br><span class="line">    <span class="string">&#x27;larger Alpine Lakes. A gondola ride from Kandersteg, followed by a &#x27;</span></span><br><span class="line">    <span class="string">&#x27;half-hour walk through pastures and pine forest, leads you to the &#x27;</span></span><br><span class="line">    <span class="string">&#x27;lake, which warms to 20 degrees Celsius in the summer. Activities &#x27;</span></span><br><span class="line">    <span class="string">&#x27;enjoyed here include rowing, and riding the summer toboggan run.&#x27;</span>,</span><br><span class="line">    softWrap: <span class="keyword">true</span>,</span><br><span class="line">  ),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>通过设置 <code>softwrap</code> 为 <code>true</code>，文本将在填充满列宽后在单词边界处<code>自动换行</code>。</p>
+<p>添加文本部分到 <code>body</code> 属性：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">body: Column(            </span><br><span class="line">  children: [            </span><br><span class="line">    titleSection,            </span><br><span class="line">    buttonSection, </span><br><span class="line">    textSection,       </span><br><span class="line">  ],            </span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+
+<h1 id="使用-ListView"><a href="#使用-ListView" class="headerlink" title="使用 ListView"></a>使用 ListView</h1><p>在最后的步骤中，需要在一个 <code>ListView</code> 中排列好所有的元素，而不是在一个 <code>Column</code> 中，因为当 <code>app</code> 运行在某个小设备上或当前显示内容超出屏幕高度时，<code>ListView</code> 支持 <code>app body</code> 的滚动。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">body: ListView(            </span><br><span class="line">  children: [            </span><br><span class="line">    Image.asset(            </span><br><span class="line">      <span class="string">&#x27;images/lake.jpg&#x27;</span>,            </span><br><span class="line">      width: <span class="number">600</span>,            </span><br><span class="line">      height: <span class="number">240</span>,            </span><br><span class="line">      fit: BoxFit.cover,</span><br></pre></td></tr></table></figure>
+
+<h1 id="加入交互体验"><a href="#加入交互体验" class="headerlink" title="加入交互体验"></a>加入交互体验</h1><p>如何修改您的应用程序以使其对用户输入做出反应？在本教程中，您将为仅包含非交互式 <code>widget</code> 的应用程序添加交互性。具体来说，您将通过创建一个管理两个无状态 <code>widget</code> 的自定义有状态 <code>widget</code>，修改一个图标实现使其可点击.</p>
+<img src="/2023/02/27/flutter-tutorial-layout-001/005lakes_int.webp" class="" title="lakes">
+
+<p>当应用第一次启动时，这个星形图标是实心红色，表明这个湖以前已经被收藏过了。星号旁边的数字表示 <code>41</code> 个人已经收藏了此湖。完成本教程后，<code>点击</code>星形图标将<code>取消</code>收藏状态，然后用<code>轮廓线</code>的星形图标代替<code>实心</code>的，并<code>减少</code>计数。再次点击会<code>重新</code>收藏，并<code>增加</code>计数。</p>
+<img src="/2023/02/27/flutter-tutorial-layout-001/006favorited-not-favorited.webp" class="" title="lakes">
+
+<p>为了实现这个，您将创建一个包含星形图标和计数的自定义 <code>widget</code>，它们都是 <code>widget</code>。因为点击星形图标会更改这两个 <code>widget</code> 的状态，所以同一个 <code>widget</code> 应该同时管理这两个 <code>widget</code>。</p>
+<h1 id="有状态和无状态的-widgets"><a href="#有状态和无状态的-widgets" class="headerlink" title="有状态和无状态的 widgets"></a>有状态和无状态的 <code>widgets</code></h1><p>有些 <code>widgets</code> 是有状态的, 有些是无状态的。如果用户与 <code>widget</code> 交互，<code>widget</code> 会发生变化，那么它就是 <code>有状态</code>的。</p>
+<p><code>无状态</code>的 <code>widget</code> 自身无法改变。 <code>Icon</code>、<code>IconButton</code> 和 <code>Text</code> 都是无状态 <code>widget</code>，它们都是 <code>StatelessWidget</code> 的子类。</p>
+<p>而 <code>有状态</code>的 <code>widget</code> 自身是可动态改变的（基于<code>State</code>）。例如，可以通过与用户的<code>交互</code>或是随着<code>数据</code>的<code>改变</code>而导致<code>外观形态</code>的变化。 <code>Checkbox</code>、<code>Radio</code>、<code>Slider</code>、 <code>InkWell</code>、<code>Form</code> 和 <code>TextField</code> 都是有状态 <code>widget</code>，它们都是 <code>StatefulWidget</code> 的子类。</p>
+<p>一个 <code>widget</code> 的状态保存在一个 <code>State</code> 对象中，它和 <code>widget</code> 的显示分离。<code> Widget</code> 的状态是一些可以更改的值，如一个滑动条的当前值或一个复选框是否被选中。当 <code>widget</code> 状态改变时，<code>State</code> 对象调用 <code>setState()</code>，告诉框架去重绘 <code>widget</code>。</p>
+<!-- flag of hidden posts --></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://hujiyi.github.io">laohoodman</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://hujiyi.github.io/2023/02/27/flutter-tutorial-layout-001/">https://hujiyi.github.io/2023/02/27/flutter-tutorial-layout-001/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://hujiyi.github.io" target="_blank">Laohoo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/flutter/">flutter</a></div><div class="post-share"><div class="social-share" data-image="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="/pluginsSrc/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="/pluginsSrc/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2021/12/04/flutter-development-environment-configuration/" title="在 Windows 10&#x2F;11 配置 Flutter 开发环境"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-04</div><div class="info-item-2">在 Windows 10&#x2F;11 配置 Flutter 开发环境</div></div><div class="info-2"><div class="info-item-1">关联文章 在 Windows 中同时安装多个 JDK  使用 Android SDK 命令行工具搭建 Flutter 开发环境   安装 Flutter SDKFlutter 到现在为止, 还处于高速发展的初始阶段, Flutter SDK 的各个大版本之间, 存在一些不兼容的情况, 所以建议选择使用 stable 发行通道的 Flutter SDK 最新版本。 下载 Flutter SDKFlutter SDK 下载地址：  Flutter 官方网站：https://docs.flutter.dev/development/tools/sdk/releases  清华大学镜像：https://mirrors.tuna.tsinghua.edu.cn/flutter/flutter_infra_release/releases/stable/windows/   解压 Flutter SDK将压缩包解压, 然后把其中的 flutter 目录整个放在你想放置 Flutter SDK 的路径中（例如 D:\AppData, 解压后路径为: D:\AppData\flutter）,...</div></div></div></a><a class="pagination-related" href="/2023/02/27/flutter-tutorial-toc/" title="Flutter Tutorial Table Of Content"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-27</div><div class="info-item-2">Flutter Tutorial Table Of Content</div></div><div class="info-2"><div class="info-item-1"> 目录 基础组件 Flutter 基础组件 - 图片和图标组件  布局组件 Flutter 布局组件 - 水平&#x2F;垂直组件(Row&#x2F;Column)  [Flutter 布局组件 - 叠加布局组件(Stack&#x2F;IndexedStack)]  [Flutter 布局组件 - 流式布局组件(Wrap)]  [Flutter 布局组件 - 自定义布局组件(Flow)]   定位装饰权重组件 Flutter 定位装饰权重组件 - 定位装饰组件(Container)  滚动组件 [Flutter 滚动组件 - ListView]  [Flutter 滚动组件 - GridView]  [Flutter 滚动组件 - PageView]   数据组件 [Flutter 数据组件 - DataTable]  布局实例 Flutter 布局实例 - 静态布局构建实例  [Flutter 布局实例 - 无限滚动布局实例]   状态管理 Flutter Riverpod 使用示例 - 计数器  开始使用 Flutter Riverpod 进行状态管理(一)  开始使用...</div></div></div></a><a class="pagination-related" href="/2022/10/09/install-flutter-on-linux-mint-21/" title="在 Linux Mint 21 安装 Flutter 开发环境"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-09</div><div class="info-item-2">在 Linux Mint 21 安装 Flutter 开发环境</div></div><div class="info-2"><div class="info-item-1">开发环境： Dell Inspiron I5 7559   Intel Core i5 6th Gen 6300HQ (2.30GHz)  NVIDIA GeForce GTX 960M   Linux Mint 21 5.15.0-48-generic, locale en_US.UTF-8   OpenJDK Runtime Environment (build 11.0.16+8-post-Ubuntu-0ubuntu122.04)  Visual Studio Code 1.72.0  Flutter version 3.3.4 on channel stable  Git 2.34.1    前段时间把用了六年的 Dell Inspiron I5 7559 处理了一下: 拆掉失效的电池; 把买电脑时自带的 128GB 固态硬盘装回去; 把500GB的机械硬盘拆下来, 放到硬盘底座上当个移动硬盘用; 然后给它安装了一个 Linux Mint 21。 本来想给 NVIDIA GeForce GTX 960M 显卡安装一个 NVIDIA 驱动的, 试着安装了几个版本不成功,...</div></div></div></a><a class="pagination-related" href="/2022/05/04/use-freezed-with-flutter/" title="在 Flutter 中使用 Freezed"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-04</div><div class="info-item-2">在 Flutter 中使用 Freezed</div></div><div class="info-2"><div class="info-item-1">https://github.com/rrousselGit/freezed https://www.developer.school/tutorials/how-to-use-freezed-with-flutter https://runble1.com/flutter-freezed-tutorial/ Freezed 是一个不可变类的代码生成器, 用于数据类&#x2F;联合&#x2F;模式匹配&#x2F;克隆的代码生成器。不可变类的代码生成具有简单的语法&#x2F;API，而不会影响功能。 在 Dart/Flutter 中定义模型(model)的时候, 经常要附加以下的工作：  定义一个构造函数+属性 覆盖 toString、运算符 &#x3D;&#x3D;、hashCode 实现一个 copyWith 方法来克隆对象 处理反序列化  除此之外，Dart 还缺少联合类型和模式匹配等功能。实现所有这些可能需要数百行代码，这很容易出错并且模型的可读性显着。 Freezed...</div></div></div></a><a class="pagination-related" href="/2022/04/09/flutter-navigator-using-go-router/" title="在 Flutter中使用 go_router 配置路由"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-09</div><div class="info-item-2">在 Flutter中使用 go_router 配置路由</div></div><div class="info-2"><div class="info-item-1">go_router 基于 Navigation 2 的 Flutter 声明式路由, 通过使用声明式路由来降低复杂性, 适用于各种不同的目标平台(mobile、Web、desktop), 是由 Flutter 生态系统委员会选出的表现出最高质量水平的软件包(Flutter Favorites)。 开发环境： Microsoft Windows 10 Enterprise LTSC [Version 10.0.19044.1586], locale zh-CN  Flutter 2.10.3 • Channel Stable, Dart 2.16.1   Visual Studio Code, 64-bit edition (version 1.66.1)  OpenJDK Runtime Environment (build 11.0.11+9-b60-7590822)  Android SDK version 30.0.3, Platform android-31, build-tools 30.0.3   新建项目执行命令，创建新项目：flutter create...</div></div></div></a><a class="pagination-related" href="/2022/03/18/build-flutter-dev-environment-with-cmdline-tools/" title="使用 Android SDK 命令行工具搭建 Flutter 开发环境"><img class="cover" src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-18</div><div class="info-item-2">使用 Android SDK 命令行工具搭建 Flutter 开发环境</div></div><div class="info-2"><div class="info-item-1">准备的软件： Flutter SDK (stable channel), 下载地址：https://docs.flutter.dev/development/tools/sdk/releases  OpenJDK 11 (可以使用其他的 JDK, 最低版本要求是 11, 可以使用更高版本的 JDK )  Android SDK Command-line Tools(latest) 下载地址：https://developer.android.google.cn/studio?hl=zh-cn#command-tools  Visual Studio Code 下载地址：https://code.visualstudio.com/Download  雷电模拟器、 夜神模拟器 或 Android Studio 自带的模拟器任选一个（也可以使用其他可以连接到开发工具的模拟器）,雷电模拟器 安装好即可使用; 夜神模拟器 需要做一个额外的配置。    最新版的 Android Studio 安装文件夹下的 jre 文件夹是自带的 OpenJDK 11.0.10, 我从另外一台安装有...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://hujiyi.github.io/2020/02/29/use-hexo-tag-cloud/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">laohoodman</div><div class="author-info-description">如果你交给某人一个程序，你将折磨他一整天；如果你教某人如何编写程序，你将折磨他一辈子。 —— David Leinweber.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hujiyi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/hujiyi" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA-Flutter-%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">新建 Flutter 项目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E5%B8%83%E5%B1%80%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%BD%A2%E5%88%86%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">对布局进行图形分解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E5%8C%BA%E5%9F%9F"><span class="toc-number">3.</span> <span class="toc-text">实现图片区域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%A0%87%E9%A2%98%E8%A1%8C"><span class="toc-number">4.</span> <span class="toc-text">实现标题行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%8C%89%E9%92%AE%E8%A1%8C"><span class="toc-number">5.</span> <span class="toc-text">实现按钮行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%87%E6%9C%AC%E5%8C%BA%E5%9F%9F"><span class="toc-number">6.</span> <span class="toc-text">实现文本区域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-ListView"><span class="toc-number">7.</span> <span class="toc-text">使用 ListView</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A0%E5%85%A5%E4%BA%A4%E4%BA%92%E4%BD%93%E9%AA%8C"><span class="toc-number">8.</span> <span class="toc-text">加入交互体验</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%89%E7%8A%B6%E6%80%81%E5%92%8C%E6%97%A0%E7%8A%B6%E6%80%81%E7%9A%84-widgets"><span class="toc-number">9.</span> <span class="toc-text">有状态和无状态的 widgets</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/11/16/learn-vue3-000/" title="Learn Vue3 目录"><img src="https://hujiyi.github.io/2024/11/16/hello-world/00/vuetoc.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Learn Vue3 目录"/></a><div class="content"><a class="title" href="/2024/11/16/learn-vue3-000/" title="Learn Vue3 目录">Learn Vue3 目录</a><time datetime="2024-11-16T12:35:53.000Z" title="发表于 2024-11-16 20:35:53">2024-11-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/27/flutter-tutorial-toc/" title="Flutter Tutorial Table Of Content"><img src="https://hujiyi.github.io/2021/02/02/flutter-introduction-part-I/flutter_eman_blog.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Flutter Tutorial Table Of Content"/></a><div class="content"><a class="title" href="/2023/02/27/flutter-tutorial-toc/" title="Flutter Tutorial Table Of Content">Flutter Tutorial Table Of Content</a><time datetime="2023-02-27T05:11:08.000Z" title="发表于 2023-02-27 13:11:08">2023-02-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/02/16/linux-from-scratch-toc/" title="从 Linux From Scratch 构建自己的操作系统 - 目录"><img src="https://hujiyi.github.io/2023/02/16/linux-from-scratch-toc/Linux-From-Scratch.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从 Linux From Scratch 构建自己的操作系统 - 目录"/></a><div class="content"><a class="title" href="/2023/02/16/linux-from-scratch-toc/" title="从 Linux From Scratch 构建自己的操作系统 - 目录">从 Linux From Scratch 构建自己的操作系统 - 目录</a><time datetime="2023-02-16T05:04:02.000Z" title="发表于 2023-02-16 13:04:02">2023-02-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/05/installing-mysql-zip-archive-in-windows/" title="在 Windows 安装解压版的 MySQL 8"><img src="https://hujiyi.github.io/2023/01/05/installing-mysql-zip-archive-in-windows/admin-mysql-logo900.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在 Windows 安装解压版的 MySQL 8"/></a><div class="content"><a class="title" href="/2023/01/05/installing-mysql-zip-archive-in-windows/" title="在 Windows 安装解压版的 MySQL 8">在 Windows 安装解压版的 MySQL 8</a><time datetime="2023-01-05T05:05:51.000Z" title="发表于 2023-01-05 13:05:51">2023-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/" title="使用 electron 和 vuetify 创建 Vue3 桌面应用程序"><img src="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/electron.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用 electron 和 vuetify 创建 Vue3 桌面应用程序"/></a><div class="content"><a class="title" href="/2022/11/21/build-vue3-desktop-app-with-vite-electron-vuetify/" title="使用 electron 和 vuetify 创建 Vue3 桌面应用程序">使用 electron 和 vuetify 创建 Vue3 桌面应用程序</a><time datetime="2022-11-21T01:23:54.000Z" title="发表于 2022-11-21 09:23:54">2022-11-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By laohoodman</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="/js/jquery.min.js"></script><script src="/js/fishes.js"></script><script src="/js/fish.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="/pluginsSrc/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
